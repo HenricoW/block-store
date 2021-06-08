@@ -24,7 +24,7 @@ function App() {
                         </ul>
                         <div className="nav-rh-icons">
                             <a href="/account">
-                                <img src="" alt="your account" />
+                                <img src="/images/cart.png" alt="your account" />
                             </a>
                             <a href="/cart">
                                 <img src="/images/cart.png" alt="shopping cart" />
