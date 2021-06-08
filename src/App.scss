@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 $background: #cecece;
+$background-light: #ececec;
+$primary-light: lightblue;
 $primary: #007af3;
 $primary2: #006bd6;
 $dark: #282c34;
@@ -112,8 +114,6 @@ img {
 
 .hero-section {
     margin-top: $nav-height;
-    // background: $primary;
-    // color: $textda;
 
     .container {
         padding: 6em 0 10em 0;
@@ -195,22 +195,22 @@ img {
             gap: 1.2em;
 
             .product-card {
-                background: $anchors;
-                border-radius: 0.5em;
-                overflow: hidden;
-                box-shadow: 0 0 1.2em rgb(27, 27, 27);
+                // background: $anchors;
+                // border-radius: 0.5em;
+                // overflow: hidden;
+                // box-shadow: 0 0 1.2em rgb(27, 27, 27);
 
                 img {
                     padding: 1em;
                 }
 
                 .card-text {
-                    padding: 0 2em 1em 2em;
+                    padding: 0 1em 1em 1em;
 
                     h4 {
                         font-weight: bold;
                         font-size: 1.3em;
-                        margin: 0.5em 0;
+                        margin: 0;
                     }
                 }
             }
@@ -223,6 +223,8 @@ img {
 }
 
 .exclusive-product {
+    background: $primary-light;
+
     .container {
         padding: 5em 0;
         margin: 0 2em;
@@ -250,6 +252,55 @@ img {
                 margin-top: 0.5em;
                 padding: 0.8em 2em;
                 border-radius: 50ch;
+            }
+        }
+    }
+}
+
+.testimonials {
+    .container {
+        padding: 4.5em 0;
+        margin: 0 2em;
+
+        .grid-testimonial {
+            padding: 0 1.5em;
+            display: grid;
+            justify-items: center;
+            grid-template-columns: 1fr;
+            gap: 1.2em;
+
+            .testimonial-card {
+                background: $background-light;
+                border-radius: 0.5em;
+                // overflow: hidden;
+                text-align: center;
+                padding: 2.5em;
+                box-shadow: 0 0 1.2em rgb(77, 77, 77);
+
+                .quote-image {
+                    width: 100px;
+                }
+
+                p {
+                    font-style: italic;
+                }
+
+                .avatar {
+                    width: 150px;
+                    border-radius: 50%;
+                    margin-top: 0.8em;
+                    // border: solid 2px black;
+                }
+
+                .name {
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    margin-top: 0.5em;
+                }
+            }
+
+            .hidden-sm {
+                display: none;
             }
         }
     }

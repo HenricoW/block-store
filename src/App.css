@@ -196,17 +196,6 @@ img {
   gap: 1.2em;
 }
 
-.featured-products .container .grid-featured .product-card,
-.featured-products .container .grid-latest .product-card,
-.latest-products .container .grid-featured .product-card,
-.latest-products .container .grid-latest .product-card {
-  background: #444;
-  border-radius: 0.5em;
-  overflow: hidden;
-  -webkit-box-shadow: 0 0 1.2em #1b1b1b;
-          box-shadow: 0 0 1.2em #1b1b1b;
-}
-
 .featured-products .container .grid-featured .product-card img,
 .featured-products .container .grid-latest .product-card img,
 .latest-products .container .grid-featured .product-card img,
@@ -218,7 +207,7 @@ img {
 .featured-products .container .grid-latest .product-card .card-text,
 .latest-products .container .grid-featured .product-card .card-text,
 .latest-products .container .grid-latest .product-card .card-text {
-  padding: 0 2em 1em 2em;
+  padding: 0 1em 1em 1em;
 }
 
 .featured-products .container .grid-featured .product-card .card-text h4,
@@ -227,7 +216,7 @@ img {
 .latest-products .container .grid-latest .product-card .card-text h4 {
   font-weight: bold;
   font-size: 1.3em;
-  margin: 0.5em 0;
+  margin: 0;
 }
 
 .featured-products .container .grid-featured .hidden-sm,
@@ -235,6 +224,10 @@ img {
 .latest-products .container .grid-featured .hidden-sm,
 .latest-products .container .grid-latest .hidden-sm {
   display: none;
+}
+
+.exclusive-product {
+  background: lightblue;
 }
 
 .exclusive-product .container {
@@ -265,5 +258,53 @@ img {
   margin-top: 0.5em;
   padding: 0.8em 2em;
   border-radius: 50ch;
+}
+
+.testimonials .container {
+  padding: 4.5em 0;
+  margin: 0 2em;
+}
+
+.testimonials .container .grid-testimonial {
+  padding: 0 1.5em;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  gap: 1.2em;
+}
+
+.testimonials .container .grid-testimonial .testimonial-card {
+  background: #ececec;
+  border-radius: 0.5em;
+  text-align: center;
+  padding: 2.5em;
+  -webkit-box-shadow: 0 0 1.2em #4d4d4d;
+          box-shadow: 0 0 1.2em #4d4d4d;
+}
+
+.testimonials .container .grid-testimonial .testimonial-card .quote-image {
+  width: 100px;
+}
+
+.testimonials .container .grid-testimonial .testimonial-card p {
+  font-style: italic;
+}
+
+.testimonials .container .grid-testimonial .testimonial-card .avatar {
+  width: 150px;
+  border-radius: 50%;
+  margin-top: 0.8em;
+}
+
+.testimonials .container .grid-testimonial .testimonial-card .name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 0.5em;
+}
+
+.testimonials .container .grid-testimonial .hidden-sm {
+  display: none;
 }
 /*# sourceMappingURL=App.css.map */

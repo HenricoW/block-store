@@ -52,7 +52,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 129.95</p>
                             </div>
                         </div>
                         <div className="product-card">
@@ -60,7 +60,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 129.95</p>
                             </div>
                         </div>
                         <div className="product-card">
@@ -68,7 +68,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 129.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -76,7 +76,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 129.95</p>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card">
@@ -113,7 +113,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -121,7 +121,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -129,7 +129,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -137,7 +137,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -145,7 +145,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -153,7 +153,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
@@ -161,7 +161,7 @@ function App() {
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
-                                <p>$ Price</p>
+                                <p>$ 99.95</p>
                             </div>
                         </div>
                     </div>
@@ -171,34 +171,34 @@ function App() {
                 <div className="container">
                     <div className="grid-testimonial">
                         <div className="testimonial-card">
-                            <img src="" alt="quote" className="quote-image" />
+                            <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
-                                culpa sapiente aliquid!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, reiciendis.
+                                Laudantium libero harum error voluptatibus nisi nesciunt autem sequi laboriosam.
                             </p>
                             <div className="rating"></div>
                             <img src="/images/user-1.png" alt="reviewer's avatar" className="avatar" />
                             <div className="name">Mable Stewart</div>
                         </div>
                         <div className="testimonial-card">
-                            <img src="" alt="quote" className="quote-image" />
+                            <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
                                 culpa sapiente aliquid!
                             </p>
                             <div className="rating"></div>
-                            <img src="/images/user-1.png" alt="reviewer's avatar" className="avatar" />
-                            <div className="name">Mable Stewart</div>
+                            <img src="/images/user-2.png" alt="reviewer's avatar" className="avatar" />
+                            <div className="name">Deshawn Richards</div>
                         </div>
                         <div className="testimonial-card">
-                            <img src="" alt="quote" className="quote-image" />
+                            <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
-                                culpa sapiente aliquid!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum porro ullam veritatis
+                                doloremque itaque voluptate placeat, quidem provident.
                             </p>
                             <div className="rating"></div>
-                            <img src="/images/user-1.png" alt="reviewer's avatar" className="avatar" />
-                            <div className="name">Mable Stewart</div>
+                            <img src="/images/user-3.png" alt="reviewer's avatar" className="avatar" />
+                            <div className="name">Tracy McGregor</div>
                         </div>
                     </div>
                 </div>
