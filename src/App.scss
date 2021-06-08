@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
-$background: #f2f2f2;
+$background: #cecece;
 $primary: #007af3;
 $primary2: #006bd6;
 $dark: #282c34;
 $anchors: #444;
 $text: white;
 $textdark: #333;
+
+$nav-height: 3.5em;
 
 body {
     font-family: Poppins;
@@ -26,6 +28,7 @@ li {
     left: 0;
     top: 0;
     width: 100%;
+    height: $nav-height;
 
     .container {
         padding: 0.8em;
@@ -37,9 +40,10 @@ li {
             font-size: 1.2em;
             text-decoration: none;
             font-weight: bold;
+            color: $textdark;
 
             span {
-                color: $primary;
+                color: $primary2;
             }
         }
 
@@ -98,4 +102,46 @@ li {
             }
         }
     }
+}
+
+.hero-section {
+    margin-top: $nav-height;
+    // background: $primary;
+    // color: $textda;
+
+    .container {
+        padding: 6em 0;
+        margin: 0 2em;
+
+        .left-col {
+            text-align: center;
+
+            h1 {
+                font-size: 3.6em;
+                line-height: 1.1em;
+            }
+
+            a {
+                text-decoration: none;
+                color: $text;
+                display: inline-block;
+                background: $primary;
+                font-size: 20px;
+
+                font-weight: bold;
+                margin-top: 2.5em;
+                padding: 1.1em 2em;
+                border-radius: 50ch;
+            }
+        }
+
+        img {
+            display: none;
+        }
+    }
+}
+
+.featured-products {
+    background: $dark;
+    color: $text;
 }

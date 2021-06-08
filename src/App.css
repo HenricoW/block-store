@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 body {
   font-family: Poppins;
-  background: #f2f2f2;
+  background: #cecece;
   color: #333;
 }
 
@@ -12,11 +12,12 @@ li {
 }
 
 .navigation {
-  background: #f2f2f2;
+  background: #cecece;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
+  height: 3.5em;
 }
 
 .navigation .container {
@@ -34,10 +35,11 @@ li {
   font-size: 1.2em;
   text-decoration: none;
   font-weight: bold;
+  color: #333;
 }
 
 .navigation .container .logo span {
-  color: #007af3;
+  color: #006bd6;
 }
 
 .navigation .container .menu-open {
@@ -97,5 +99,44 @@ li {
 
 .navigation .container nav .nav-rh-icons img:hover {
   background: #444;
+}
+
+.hero-section {
+  margin-top: 3.5em;
+}
+
+.hero-section .container {
+  padding: 6em 0;
+  margin: 0 2em;
+}
+
+.hero-section .container .left-col {
+  text-align: center;
+}
+
+.hero-section .container .left-col h1 {
+  font-size: 3.6em;
+  line-height: 1.1em;
+}
+
+.hero-section .container .left-col a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  background: #007af3;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 2.5em;
+  padding: 1.1em 2em;
+  border-radius: 50ch;
+}
+
+.hero-section .container img {
+  display: none;
+}
+
+.featured-products {
+  background: #282c34;
+  color: white;
 }
 /*# sourceMappingURL=App.css.map */
