@@ -112,7 +112,7 @@ img {
 }
 
 .hero-section .container {
-  padding: 6em 0;
+  padding: 6em 0 10em 0;
   margin: 0 2em;
 }
 
@@ -235,5 +235,35 @@ img {
 .latest-products .container .grid-featured .hidden-sm,
 .latest-products .container .grid-latest .hidden-sm {
   display: none;
+}
+
+.exclusive-product .container {
+  padding: 5em 0;
+  margin: 0 2em;
+}
+
+.exclusive-product .container img {
+  margin-bottom: 3em;
+}
+
+.exclusive-product .container .right-col {
+  text-align: center;
+}
+
+.exclusive-product .container .right-col h1 {
+  color: #007af3;
+  font-size: 2em;
+}
+
+.exclusive-product .container .right-col a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  background: #007af3;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0.5em;
+  padding: 0.8em 2em;
+  border-radius: 50ch;
 }
 /*# sourceMappingURL=App.css.map */

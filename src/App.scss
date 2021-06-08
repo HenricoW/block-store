@@ -116,7 +116,7 @@ img {
     // color: $textda;
 
     .container {
-        padding: 6em 0;
+        padding: 6em 0 10em 0;
         margin: 0 2em;
 
         .left-col {
@@ -217,6 +217,39 @@ img {
 
             .hidden-sm {
                 display: none;
+            }
+        }
+    }
+}
+
+.exclusive-product {
+    .container {
+        padding: 5em 0;
+        margin: 0 2em;
+
+        img {
+            margin-bottom: 3em;
+        }
+
+        .right-col {
+            text-align: center;
+
+            h1 {
+                color: $primary;
+                font-size: 2em;
+            }
+
+            a {
+                text-decoration: none;
+                color: $text;
+                display: inline-block;
+                background: $primary;
+                font-size: 20px;
+
+                font-weight: bold;
+                margin-top: 0.5em;
+                padding: 0.8em 2em;
+                border-radius: 50ch;
             }
         }
     }
