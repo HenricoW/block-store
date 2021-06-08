@@ -116,7 +116,7 @@ function App() {
                                 <p>$ Price</p>
                             </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-3.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
@@ -124,7 +124,7 @@ function App() {
                                 <p>$ Price</p>
                             </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-4.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
