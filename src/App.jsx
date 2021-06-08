@@ -40,7 +40,7 @@ function App() {
                         <p>Presenting a new way to shop with Web 3.0</p>
                         <a href="/products">Experience it now!</a>
                     </div>
-                    <img src="/images/image1.png" alt="hero image" />
+                    <img src="/images/image1.png" alt="hero" />
                 </div>
             </section>
             <section className="featured-products">
@@ -49,27 +49,35 @@ function App() {
                     <div className="grid-featured">
                         <div className="product-card">
                             <img src="/images/product-1.jpg" alt="featured product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                         <div className="product-card">
                             <img src="/images/product-2.jpg" alt="featured product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                         <div className="product-card">
                             <img src="/images/product-3.jpg" alt="featured product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-4.jpg" alt="featured product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,57 +96,73 @@ function App() {
                     </div>
                 </div>
             </section>
-            <section className="featured-products">
+            <section className="latest-products">
                 <div className="container">
                     <h2>Latest Products</h2>
                     <div className="grid-latest">
                         <div className="product-card">
                             <img src="/images/product-1.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                         <div className="product-card">
                             <img src="/images/product-2.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                         <div className="product-card">
                             <img src="/images/product-3.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                         <div className="product-card">
                             <img src="/images/product-4.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-1.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-2.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-3.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
-                        <div className="product-card">
+                        <div className="product-card hidden-sm">
                             <img src="/images/product-4.jpg" alt="latest product" />
-                            <p>Product Title</p>
-                            <div className="rating"></div>
-                            <p>$ Price</p>
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ Price</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -147,7 +171,7 @@ function App() {
                 <div className="container">
                     <div className="grid-testimonial">
                         <div className="testimonial-card">
-                            <img src="" alt="quote image" className="quote-image" />
+                            <img src="" alt="quote" className="quote-image" />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
                                 culpa sapiente aliquid!
@@ -157,7 +181,7 @@ function App() {
                             <div className="name">Mable Stewart</div>
                         </div>
                         <div className="testimonial-card">
-                            <img src="" alt="quote image" className="quote-image" />
+                            <img src="" alt="quote" className="quote-image" />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
                                 culpa sapiente aliquid!
@@ -167,7 +191,7 @@ function App() {
                             <div className="name">Mable Stewart</div>
                         </div>
                         <div className="testimonial-card">
-                            <img src="" alt="quote image" className="quote-image" />
+                            <img src="" alt="quote" className="quote-image" />
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi harum eum ratione
                                 culpa sapiente aliquid!
