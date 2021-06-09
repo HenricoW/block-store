@@ -23,9 +23,15 @@ function App() {
                             </li>
                         </ul>
                         <div className="nav-rh-icons">
-                            <a href="/account">
-                                <img src="/images/shopping-cart-empty-side-view.svg" alt="your account" />
+                            <a href="/cart" className="cart-white">
+                                <img src="/images/shopping-cart-white.svg" alt="your account" />
                             </a>
+                            <a href="/cart" className="cart-black">
+                                <img src="/images/shopping-cart-black.svg" alt="your account" />
+                            </a>
+                            {/* <a href="/cart" className="wallet-black">
+                                <img src="/images/shopping-cart-black.svg" alt="your account" />
+                            </a> */}
                             {/* <a href="/cart">
                                 <img src="/images/cart.png" alt="shopping cart" />
                             </a> */}

@@ -10,7 +10,7 @@ $anchors: #444;
 $text: white;
 $textdark: #333;
 
-$nav-height: 4em;
+$nav-height: 69px;
 
 body {
     font-family: Poppins, sans-serif;
@@ -107,8 +107,12 @@ img {
             }
 
             .nav-rh-icons {
-                // display: flex;
-                // justify-content: space-evenly;
+                display: flex;
+                justify-content: space-evenly;
+
+                .cart-black {
+                    display: none;
+                }
 
                 img {
                     width: 5.5em;
@@ -479,7 +483,12 @@ footer {
     }
 
     .navigation .container {
-        padding: 1em 6%;
+        padding: 1em 0;
+        margin: 0 6%;
+    }
+
+    .exclusive-product .container {
+        margin: 0 10%;
     }
 
     .hero-section .container .left-col {
@@ -497,5 +506,141 @@ footer {
 
     footer .container .grid-footer {
         padding: 0 2em;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .navigation .container {
+        display: grid;
+        grid-template-columns: 150px auto;
+        justify-content: unset;
+
+        .menu-open,
+        .menu-close {
+            display: none;
+        }
+
+        nav {
+            justify-self: end;
+            display: flex;
+            justify-content: space-between;
+            position: unset;
+            height: unset;
+            width: unset;
+            background: unset;
+            padding: 0;
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0;
+
+                li {
+                    a {
+                        color: $textdark;
+                        padding: 0 1em;
+
+                        &:hover {
+                            background: unset;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+
+            .nav-rh-icons {
+                margin: auto 0;
+                display: flex;
+
+                .cart-black {
+                    display: block;
+                }
+
+                .cart-white {
+                    display: none;
+                }
+
+                a {
+                    display: block;
+                    padding: 0;
+                    margin: 0 8px;
+
+                    img {
+                        display: block;
+                        width: 35px;
+                        margin: 0;
+                        padding: 0.3em;
+
+                        &:hover {
+                            background: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    footer .container .grid-footer {
+        .brand-signature {
+            grid-column: 1 / 7;
+        }
+
+        .footer-links {
+            grid-column: 7 / -1;
+        }
+    }
+
+    .latest-products .container .grid-latest,
+    .testimonials .container .grid-testimonial {
+        .hidden-sm {
+            display: block;
+        }
+
+        .testimonial-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .container {
+        margin: 0 15%;
+    }
+
+    .navigation .container {
+        padding: 1em 0;
+        margin: 0 15%;
+    }
+
+    .exclusive-product .container {
+        margin: 0 15%;
+    }
+
+    footer .container {
+        margin: 0 15%;
+        .grid-footer {
+            padding: 0;
+
+            .brand-signature {
+                grid-column: 1 / 8;
+            }
+
+            .footer-links {
+                grid-column: 8 / -1;
+
+                .useful-links li {
+                    padding: 0.2em 0;
+                }
+
+                .socials .social-icons {
+                    a {
+                        padding: 5px 10px;
+                    }
+                }
+            }
+        }
     }
 }

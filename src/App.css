@@ -26,7 +26,7 @@ img {
   left: 0;
   top: 0;
   width: 100%;
-  height: 4em;
+  height: 69px;
   z-index: 100;
 }
 
@@ -99,6 +99,19 @@ img {
   background: #444;
 }
 
+.navigation .container nav .nav-rh-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.navigation .container nav .nav-rh-icons .cart-black {
+  display: none;
+}
+
 .navigation .container nav .nav-rh-icons img {
   width: 5.5em;
   padding: 1em;
@@ -110,7 +123,7 @@ img {
 }
 
 .hero-section {
-  margin-top: 4em;
+  margin-top: 69px;
 }
 
 .hero-section .container {
@@ -497,7 +510,11 @@ footer .container .copyright::before {
     margin: 0 10%;
   }
   .navigation .container {
-    padding: 1em 6%;
+    padding: 1em 0;
+    margin: 0 6%;
+  }
+  .exclusive-product .container {
+    margin: 0 10%;
   }
   .hero-section .container .left-col h1 {
     font-size: 4em;
@@ -511,6 +528,140 @@ footer .container .copyright::before {
   }
   footer .container .grid-footer {
     padding: 0 2em;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .navigation .container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 150px auto;
+        grid-template-columns: 150px auto;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .navigation .container .menu-open,
+  .navigation .container .menu-close {
+    display: none;
+  }
+  .navigation .container nav {
+    justify-self: end;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    position: unset;
+    height: unset;
+    width: unset;
+    background: unset;
+    padding: 0;
+  }
+  .navigation .container nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0;
+  }
+  .navigation .container nav ul li a {
+    color: #333;
+    padding: 0 1em;
+  }
+  .navigation .container nav ul li a:hover {
+    background: unset;
+    font-weight: bold;
+  }
+  .navigation .container nav .nav-rh-icons {
+    margin: auto 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .navigation .container nav .nav-rh-icons .cart-black {
+    display: block;
+  }
+  .navigation .container nav .nav-rh-icons .cart-white {
+    display: none;
+  }
+  .navigation .container nav .nav-rh-icons a {
+    display: block;
+    padding: 0;
+    margin: 0 8px;
+  }
+  .navigation .container nav .nav-rh-icons a img {
+    display: block;
+    width: 35px;
+    margin: 0;
+    padding: 0.3em;
+  }
+  .navigation .container nav .nav-rh-icons a img:hover {
+    background: unset;
+  }
+  footer .container .grid-footer .brand-signature {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 6;
+    grid-column: 1 / 7;
+  }
+  footer .container .grid-footer .footer-links {
+    grid-column: 7 / -1;
+  }
+  .latest-products .container .grid-latest .hidden-sm,
+  .testimonials .container .grid-testimonial .hidden-sm {
+    display: block;
+  }
+  .latest-products .container .grid-latest .testimonial-card,
+  .testimonials .container .grid-testimonial .testimonial-card {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .container {
+    margin: 0 15%;
+  }
+  .navigation .container {
+    padding: 1em 0;
+    margin: 0 15%;
+  }
+  .exclusive-product .container {
+    margin: 0 15%;
+  }
+  footer .container {
+    margin: 0 15%;
+  }
+  footer .container .grid-footer {
+    padding: 0;
+  }
+  footer .container .grid-footer .brand-signature {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 7;
+    grid-column: 1 / 8;
+  }
+  footer .container .grid-footer .footer-links {
+    grid-column: 8 / -1;
+  }
+  footer .container .grid-footer .footer-links .useful-links li {
+    padding: 0.2em 0;
+  }
+  footer .container .grid-footer .footer-links .socials .social-icons a {
+    padding: 5px 10px;
   }
 }
 /*# sourceMappingURL=App.css.map */
