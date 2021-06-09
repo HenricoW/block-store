@@ -71,14 +71,6 @@ function App() {
                                 <p>$ 129.95</p>
                             </div>
                         </div>
-                        <div className="product-card hidden-sm">
-                            <img src="/images/product-4.jpg" alt="featured product" />
-                            <div className="card-text">
-                                <h4>Product Title</h4>
-                                <div className="rating"></div>
-                                <p>$ 129.95</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -148,7 +140,7 @@ function App() {
                                 <p>$ 99.95</p>
                             </div>
                         </div>
-                        <div className="product-card hidden-sm">
+                        <div className="product-card hidden-md">
                             <img src="/images/product-7.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
@@ -156,7 +148,7 @@ function App() {
                                 <p>$ 99.95</p>
                             </div>
                         </div>
-                        <div className="product-card hidden-sm">
+                        <div className="product-card hidden-md">
                             <img src="/images/product-8.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
@@ -177,8 +169,10 @@ function App() {
                                 Laudantium libero harum error voluptatibus nisi nesciunt autem sequi laboriosam.
                             </p>
                             <div className="rating"></div>
-                            <img src="/images/user-1.png" alt="reviewer's avatar" className="avatar" />
-                            <div className="name">Mable Stewart</div>
+                            <div className="reviewer">
+                                <img src="/images/user-1.png" alt="reviewer's avatar" className="avatar" />
+                                <div className="name">Mable Stewart</div>
+                            </div>
                         </div>
                         <div className="testimonial-card">
                             <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
@@ -187,18 +181,22 @@ function App() {
                                 culpa sapiente aliquid!
                             </p>
                             <div className="rating"></div>
-                            <img src="/images/user-2.png" alt="reviewer's avatar" className="avatar" />
-                            <div className="name">Deshawn Richards</div>
+                            <div className="reviewer">
+                                <img src="/images/user-2.png" alt="reviewer's avatar" className="avatar" />
+                                <div className="name">Deshawn Richards</div>
+                            </div>
                         </div>
-                        <div className="testimonial-card">
+                        <div className="testimonial-card hidden-sm">
                             <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
                             <p>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum porro ullam veritatis
                                 doloremque itaque voluptate placeat, quidem provident.
                             </p>
                             <div className="rating"></div>
-                            <img src="/images/user-3.png" alt="reviewer's avatar" className="avatar" />
-                            <div className="name">Tracy McGregor</div>
+                            <div className="reviewer">
+                                <img src="/images/user-3.png" alt="reviewer's avatar" className="avatar" />
+                                <div className="name">Tracy McGregor</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -264,18 +262,18 @@ function App() {
                                 </div>
                             </div>
                         </div>
-                        <div className="copyright">
-                            <p>Copyright &copy; RicoTech 2021</p>
-                            <div>
-                                Icons made by{" "}
-                                <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
-                                    Pixel perfect
-                                </a>{" "}
-                                from{" "}
-                                <a href="https://www.flaticon.com/" title="Flaticon">
-                                    www.flaticon.com
-                                </a>
-                            </div>
+                    </div>
+                    <div className="copyright">
+                        <p>Copyright &copy; RicoTech 2021</p>
+                        <div>
+                            Icons made by{" "}
+                            <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+                                Pixel perfect
+                            </a>{" "}
+                            from{" "}
+                            <a href="https://www.flaticon.com/" title="Flaticon">
+                                www.flaticon.com
+                            </a>
                         </div>
                     </div>
                 </div>

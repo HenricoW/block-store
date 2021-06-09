@@ -13,7 +13,7 @@ $textdark: #333;
 $nav-height: 4em;
 
 body {
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     background: $background;
     color: $textdark;
 }
@@ -28,6 +28,11 @@ img {
     width: 100%;
 }
 
+.container {
+    padding: 4em 0;
+    margin: 0 2em;
+}
+
 .navigation {
     background: $background;
     position: fixed;
@@ -39,8 +44,10 @@ img {
 
     .container {
         padding: 1em;
+        margin: 0;
         display: flex;
         justify-content: space-between;
+        // align-items: center;
         position: relative;
 
         .logo {
@@ -68,6 +75,7 @@ img {
             top: 0;
             right: 0;
             width: 60%;
+            max-width: 350px;
             background: $dark;
             z-index: 999;
             padding: 1em;
@@ -120,19 +128,18 @@ img {
     margin-top: $nav-height;
 
     .container {
-        padding: 9em 0 13em 0;
-        margin: 0 2em;
+        padding: 5em 0 10em 0;
 
         .left-col {
             text-align: center;
 
             h1 {
-                font-size: 3.6em;
+                font-size: 3em;
                 line-height: 1.1em;
                 margin-bottom: 0.5em;
             }
             p {
-                font-size: 1.2em;
+                font-size: 1em;
             }
 
             a {
@@ -140,11 +147,11 @@ img {
                 color: $primary;
                 display: inline-block;
                 background: $background-light;
-                font-size: 20px;
+                font-size: 1.3em;
 
                 font-weight: bold;
-                margin-top: 2.5em;
-                padding: 1em 2em;
+                margin-top: 0.5em;
+                padding: 0.5em 1.2em;
                 border: solid $primary 4px;
                 border-radius: 50ch;
 
@@ -169,45 +176,40 @@ img {
     color: $text;
 
     .container {
-        padding: 4.5em 0;
-        margin: 0 2em;
-
         h2 {
             font-weight: normal;
             text-align: center;
             margin-bottom: 3em;
             position: relative;
-            // z-index: 2;
 
-            &::before {
-                content: "";
-                position: absolute;
-                background: $primary;
-                top: 45%;
-                left: 0;
-                height: 0.2em;
-                width: 90px;
-                // z-index: 1;
-            }
+            // &::before {
+            //     content: "";
+            //     position: absolute;
+            //     background: $primary;
+            //     top: 45%;
+            //     left: 0;
+            //     height: 0.2em;
+            //     width: 90px;
+            // }
 
             &::after {
                 content: "";
                 position: absolute;
                 background: $primary;
-                top: 45%;
-                right: 0;
+                bottom: -0.8em;
+                right: 30%;
+                left: 30%;
                 height: 0.2em;
-                width: 90px;
-                // z-index: 1;
+                // width: 90px;
             }
         }
 
         .grid-featured,
         .grid-latest {
-            padding: 0 1.5em;
+            padding: 0;
             display: grid;
             justify-items: center;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.2em;
 
             .product-card {
@@ -215,7 +217,8 @@ img {
                 transition: transform 150ms ease;
 
                 img {
-                    padding: 1.5em 1.5em 0;
+                    padding: 1em 1em 0;
+                    // min-width: 200px;
                 }
 
                 .card-text {
@@ -241,6 +244,10 @@ img {
             .hidden-sm {
                 display: none;
             }
+
+            .hidden-md {
+                display: none;
+            }
         }
     }
 }
@@ -249,12 +256,14 @@ img {
     background: $primary-light;
 
     .container {
-        padding: 5em 0;
+        padding: 4em 0;
         margin: 0 2em;
 
         img {
-            margin-bottom: 3em;
+            display: block;
+            margin: 3em auto;
             transition: transform 150ms ease;
+            max-width: 450px;
 
             &:hover {
                 transform: translateY(-0.5em) scale(1.1);
@@ -279,7 +288,7 @@ img {
 
                 font-weight: bold;
                 margin-top: 0.5em;
-                padding: 0.7em 2em;
+                padding: 0.5em 1.2em;
                 border: solid $primary 4px;
                 border-radius: 50ch;
 
@@ -294,14 +303,11 @@ img {
 
 .testimonials {
     .container {
-        padding: 4.5em 0;
-        margin: 0 2em;
-
         .grid-testimonial {
-            padding: 0 1.5em;
+            padding: 0;
             display: grid;
             justify-items: center;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.2em;
 
             .testimonial-card {
@@ -309,8 +315,15 @@ img {
                 border-radius: 0.5em;
                 // overflow: hidden;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
                 padding: 2.5em;
                 box-shadow: 0 0 1.2em rgb(77, 77, 77);
+
+                img {
+                    margin: 0 auto;
+                }
 
                 .quote-image {
                     width: 100px;
@@ -324,7 +337,6 @@ img {
                     width: 150px;
                     border-radius: 50%;
                     margin-top: 0.8em;
-                    // border: solid 2px black;
                 }
 
                 .name {
@@ -345,12 +357,9 @@ img {
     background: $dark;
 
     .container {
-        padding: 5em 0;
-        margin: 0 2em;
-
         .grid-brands {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 0.5em;
         }
     }
@@ -361,26 +370,27 @@ footer {
     color: $background;
 
     .container {
-        padding: 4.5em 0;
-        margin: 0 2em;
+        margin: 0 0.5em;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         .grid-footer {
             display: grid;
-            grid-template-columns: 1fr;
-
-            a {
-                text-decoration: none;
-                color: inherit;
-            }
+            grid-template-columns: repeat(12, 1fr);
 
             .brand-signature {
+                grid-column: 1 / -1;
                 text-align: center;
-                padding: 0 1.5em;
+                padding: 1.2em 0.5em 0;
 
                 h1 {
-                    font-size: 3.5em;
+                    font-size: 2.6em;
+                    display: inline-block;
                     margin: 0 0 0.8em 0;
-                    padding: 0.2em;
+                    padding: 0.2em 0.8em;
                     border: $primary solid 4px;
                     border-radius: 20px;
 
@@ -389,26 +399,34 @@ footer {
                     }
                 }
 
+                p {
+                    padding: 0 1em;
+                }
+
                 img {
                     width: 90%;
                 }
             }
 
             .footer-links {
-                display: flex;
-                justify-content: space-around;
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                justify-content: center;
                 text-align: center;
+                font-size: 0.8em;
 
                 h4 {
                     color: $background-light;
-                    margin-bottom: 0.5em;
+                    margin-bottom: 0.8em;
                     font-weight: bold;
+                    font-size: 1.2em;
                 }
 
                 .useful-links {
                     li {
                         list-style: none;
-                        padding: 0.22em 0;
+                        padding: 0.4em 0;
 
                         &:hover {
                             color: white;
@@ -418,39 +436,66 @@ footer {
                 }
 
                 .socials {
-                    width: 40%;
-
                     .social-icons {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
+                        margin: 0.5em auto;
+                        width: 150px;
 
                         a {
+                            display: inline-block;
+                            padding: 15px;
+
                             img {
-                                width: 50px;
-                                margin: 0.6em 0;
+                                width: 45px;
                             }
                         }
                     }
                 }
             }
+        }
 
-            .copyright {
-                text-align: center;
-                color: $anchors;
-                margin-top: 1.5em;
-                padding-top: 1.5em;
-                position: relative;
+        .copyright {
+            text-align: center;
+            color: $anchors;
+            margin-top: 1.5em;
+            padding-top: 0.5em;
+            position: relative;
 
-                &::before {
-                    position: absolute;
-                    content: "";
-                    top: 0;
-                    left: 10%;
-                    right: 10%;
-                    height: 2px;
-                    background: $anchors;
-                }
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 10%;
+                right: 10%;
+                height: 2px;
+                background: $anchors;
             }
         }
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .container {
+        margin: 0 10%;
+    }
+
+    .navigation .container {
+        padding: 1em 6%;
+    }
+
+    .hero-section .container .left-col {
+        h1 {
+            font-size: 4em;
+            margin-bottom: 1em;
+        }
+        p {
+            font-size: 1.3em;
+        }
+        a {
+            margin-top: 2.5em;
+        }
+    }
+
+    footer .container .grid-footer {
+        padding: 0 2em;
     }
 }
