@@ -21,12 +21,12 @@ img {
   left: 0;
   top: 0;
   width: 100%;
-  height: 3.5em;
+  height: 4em;
   z-index: 100;
 }
 
 .navigation .container {
-  padding: 0.8em;
+  padding: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,7 +37,7 @@ img {
 }
 
 .navigation .container .logo {
-  font-size: 1.2em;
+  font-size: 1.4em;
   text-decoration: none;
   font-weight: bold;
   color: #333;
@@ -90,17 +90,12 @@ img {
 
 .navigation .container nav .nav-rh-icons {
   margin-top: 4em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
 }
 
 .navigation .container nav .nav-rh-icons img {
-  width: 7em;
+  width: 5.5em;
   padding: 1em;
+  margin-left: 0.5em;
 }
 
 .navigation .container nav .nav-rh-icons img:hover {
@@ -108,11 +103,11 @@ img {
 }
 
 .hero-section {
-  margin-top: 3.5em;
+  margin-top: 4em;
 }
 
 .hero-section .container {
-  padding: 6em 0 10em 0;
+  padding: 9em 0 13em 0;
   margin: 0 2em;
 }
 
@@ -123,6 +118,11 @@ img {
 .hero-section .container .left-col h1 {
   font-size: 3.6em;
   line-height: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+.hero-section .container .left-col p {
+  font-size: 1.2em;
 }
 
 .hero-section .container .left-col a {
@@ -196,18 +196,25 @@ img {
   gap: 1.2em;
 }
 
+.featured-products .container .grid-featured .product-card,
+.featured-products .container .grid-latest .product-card,
+.latest-products .container .grid-featured .product-card,
+.latest-products .container .grid-latest .product-card {
+  border: solid #cecece 3px;
+}
+
 .featured-products .container .grid-featured .product-card img,
 .featured-products .container .grid-latest .product-card img,
 .latest-products .container .grid-featured .product-card img,
 .latest-products .container .grid-latest .product-card img {
-  padding: 1em;
+  padding: 1.5em 1.5em 0;
 }
 
 .featured-products .container .grid-featured .product-card .card-text,
 .featured-products .container .grid-latest .product-card .card-text,
 .latest-products .container .grid-featured .product-card .card-text,
 .latest-products .container .grid-latest .product-card .card-text {
-  padding: 0 1em 1em 1em;
+  padding: 1em 1.5em;
 }
 
 .featured-products .container .grid-featured .product-card .card-text h4,
@@ -306,5 +313,119 @@ img {
 
 .testimonials .container .grid-testimonial .hidden-sm {
   display: none;
+}
+
+.brands {
+  background: #282c34;
+}
+
+.brands .container {
+  padding: 5em 0;
+  margin: 0 2em;
+}
+
+.brands .container .grid-brands {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+}
+
+footer {
+  background: black;
+  color: #cecece;
+}
+
+footer .container {
+  padding: 4.5em 0;
+  margin: 0 2em;
+}
+
+footer .container .grid-footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+footer .container .grid-footer a {
+  text-decoration: none;
+  color: inherit;
+}
+
+footer .container .grid-footer .brand-signature {
+  text-align: center;
+  padding: 0 1.5em;
+}
+
+footer .container .grid-footer .brand-signature h1 {
+  font-size: 3.5em;
+  margin: 0 0 0.8em 0;
+  padding: 0.2em;
+  border: #007af3 solid 4px;
+  border-radius: 20px;
+}
+
+footer .container .grid-footer .brand-signature h1 span {
+  color: #007af3;
+}
+
+footer .container .grid-footer .brand-signature img {
+  width: 90%;
+}
+
+footer .container .grid-footer .footer-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  text-align: center;
+}
+
+footer .container .grid-footer .footer-links h4 {
+  color: #ececec;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+footer .container .grid-footer .footer-links .useful-links li {
+  list-style: none;
+  padding: 0.22em 0;
+}
+
+footer .container .grid-footer .footer-links .socials {
+  width: 40%;
+}
+
+footer .container .grid-footer .footer-links .socials .social-icons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+footer .container .grid-footer .footer-links .socials .social-icons a img {
+  width: 50px;
+  margin: 0.6em 0;
+}
+
+footer .container .grid-footer .copyright {
+  text-align: center;
+  color: #444;
+  margin-top: 1.5em;
+  padding-top: 1.5em;
+  position: relative;
+}
+
+footer .container .grid-footer .copyright::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: #444;
 }
 /*# sourceMappingURL=App.css.map */

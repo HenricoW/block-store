@@ -24,11 +24,11 @@ function App() {
                         </ul>
                         <div className="nav-rh-icons">
                             <a href="/account">
-                                <img src="/images/cart.png" alt="your account" />
+                                <img src="/images/shopping-cart-empty-side-view.svg" alt="your account" />
                             </a>
-                            <a href="/cart">
+                            {/* <a href="/cart">
                                 <img src="/images/cart.png" alt="shopping cart" />
-                            </a>
+                            </a> */}
                         </div>
                     </nav>
                 </div>
@@ -36,7 +36,7 @@ function App() {
             <section className="hero-section">
                 <div className="container">
                     <div className="left-col">
-                        <h1>Work out with a new style</h1>
+                        <h1>Work out with new style</h1>
                         <p>Presenting a new way to shop with Web 3.0</p>
                         <a href="/products">Experience it now!</a>
                     </div>
@@ -48,6 +48,14 @@ function App() {
                     <h2>Featured Products</h2>
                     <div className="grid-featured">
                         <div className="product-card">
+                            <img src="/images/product-3.jpg" alt="featured product" />
+                            <div className="card-text">
+                                <h4>Product Title</h4>
+                                <div className="rating"></div>
+                                <p>$ 129.95</p>
+                            </div>
+                        </div>
+                        <div className="product-card">
                             <img src="/images/product-1.jpg" alt="featured product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
@@ -56,15 +64,7 @@ function App() {
                             </div>
                         </div>
                         <div className="product-card">
-                            <img src="/images/product-2.jpg" alt="featured product" />
-                            <div className="card-text">
-                                <h4>Product Title</h4>
-                                <div className="rating"></div>
-                                <p>$ 129.95</p>
-                            </div>
-                        </div>
-                        <div className="product-card">
-                            <img src="/images/product-3.jpg" alt="featured product" />
+                            <img src="/images/product-9.jpg" alt="featured product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
@@ -101,7 +101,7 @@ function App() {
                     <h2>Latest Products</h2>
                     <div className="grid-latest">
                         <div className="product-card">
-                            <img src="/images/product-1.jpg" alt="latest product" />
+                            <img src="/images/product-5.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
@@ -141,7 +141,7 @@ function App() {
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
-                            <img src="/images/product-2.jpg" alt="latest product" />
+                            <img src="/images/product-6.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
@@ -149,7 +149,7 @@ function App() {
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
-                            <img src="/images/product-3.jpg" alt="latest product" />
+                            <img src="/images/product-7.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
@@ -157,7 +157,7 @@ function App() {
                             </div>
                         </div>
                         <div className="product-card hidden-sm">
-                            <img src="/images/product-4.jpg" alt="latest product" />
+                            <img src="/images/product-8.jpg" alt="latest product" />
                             <div className="card-text">
                                 <h4>Product Title</h4>
                                 <div className="rating"></div>
@@ -205,12 +205,12 @@ function App() {
             </section>
             <section className="brands">
                 <div className="container">
-                    <div className="flex-brands">
+                    <div className="grid-brands">
+                        <img src="/images/logo-oppo.png" alt="brand logo" />
+                        <img src="/images/logo-coca-cola.png" alt="brand logo" />
                         <img src="/images/logo-paypal.png" alt="brand logo" />
-                        <img src="/images/logo-paypal.png" alt="brand logo" />
-                        <img src="/images/logo-paypal.png" alt="brand logo" />
-                        <img src="/images/logo-paypal.png" alt="brand logo" />
-                        <img src="/images/logo-paypal.png" alt="brand logo" />
+                        <img src="/images/logo-philips.png" alt="brand logo" />
+                        <img src="/images/logo-godrej.png" alt="brand logo" />
                     </div>
                 </div>
             </section>
@@ -218,38 +218,64 @@ function App() {
                 <div className="container">
                     <div className="grid-footer">
                         <div className="brand-signature">
-                            <img src="/images/logo-white.png" alt="store logo" />
+                            {/* <img src="/images/logo-white.png" alt="store logo" /> */}
+                            <h1>
+                                <span>Web3</span> Store
+                            </h1>
                             <p>
                                 Here at Web3 Store we want to make the world a better place by providing technological
                                 alternatives to the mainstream approach of how things are done. We invite you to join us
                                 on this mission.
                             </p>
                         </div>
-                        <div className="useful-links">
-                            <ul>
-                                <li>Coupons</li>
-                                <li>Blog posts</li>
-                                <li>Returns</li>
-                                <li>Become an Affiliate</li>
-                            </ul>
-                        </div>
-                        <div className="socials">
-                            <a href="/" className="social-link">
-                                <img src="/images/facebook.svg" alt="Facebook link" />
-                            </a>
-                            <a href="/" className="social-link">
-                                <img src="/images/facebook.svg" alt="Twitter link" />
-                            </a>
-                            <a href="/" className="social-link">
-                                <img src="/images/instagram.svg" alt="Instagram link" />
-                            </a>
-                            <a href="/" className="social-link">
-                                <img src="/images/youtube.svg" alt="YouTube link" />
-                            </a>
+                        <div className="footer-links">
+                            <div className="useful-links">
+                                <h4>Useful Links</h4>
+                                <ul>
+                                    <li>
+                                        <a href="/">Coupons</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">Blog posts</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">Returns</a>
+                                    </li>
+                                    <li>
+                                        <a href="/">Join our Affiliates</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="socials">
+                                <h4>Social Media</h4>
+                                <div className="social-icons">
+                                    <a href="/" className="social-link">
+                                        <img src="/images/facebook.svg" alt="Facebook link" />
+                                    </a>
+                                    <a href="/" className="social-link">
+                                        <img src="/images/twitter.svg" alt="Twitter link" />
+                                    </a>
+                                    <a href="/" className="social-link">
+                                        <img src="/images/instagram.svg" alt="Instagram link" />
+                                    </a>
+                                    <a href="/" className="social-link">
+                                        <img src="/images/youtube.svg" alt="YouTube link" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div className="copyright">
                             <p>Copyright &copy; RicoTech 2021</p>
-                            <a href="https://www.flaticon.com/packs/social-logo-3">Logos from flaticon.com</a>
+                            <div>
+                                Icons made by{" "}
+                                <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">
+                                    Pixel perfect
+                                </a>{" "}
+                                from{" "}
+                                <a href="https://www.flaticon.com/" title="Flaticon">
+                                    www.flaticon.com
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
