@@ -44,10 +44,13 @@ img {
         position: relative;
 
         .logo {
-            font-size: 1.4em;
+            font-size: 1.3em;
             text-decoration: none;
             font-weight: bold;
             color: $textdark;
+            padding: 0 0.5em;
+            border: solid $primary 3px;
+            border-radius: 0.4em;
 
             span {
                 color: $primary2;
@@ -72,11 +75,12 @@ img {
 
             .menu-close {
                 cursor: pointer;
-                width: 20px;
+                width: 25px;
+                margin: 0.5em;
             }
 
             ul {
-                margin-top: 8em;
+                margin: 6em 0;
 
                 li {
                     list-style: none;
@@ -95,7 +99,6 @@ img {
             }
 
             .nav-rh-icons {
-                margin-top: 4em;
                 // display: flex;
                 // justify-content: space-evenly;
 
@@ -134,15 +137,23 @@ img {
 
             a {
                 text-decoration: none;
-                color: $text;
+                color: $primary;
                 display: inline-block;
-                background: $primary;
+                background: $background-light;
                 font-size: 20px;
 
                 font-weight: bold;
                 margin-top: 2.5em;
-                padding: 1.1em 2em;
+                padding: 1em 2em;
+                border: solid $primary 4px;
                 border-radius: 50ch;
+
+                box-shadow: 0 0.4em 1em $anchors;
+
+                &:hover {
+                    color: white;
+                    background: $primary;
+                }
             }
         }
 
@@ -200,11 +211,8 @@ img {
             gap: 1.2em;
 
             .product-card {
-                // background: $anchors;
-                // border-radius: 0.5em;
-                // overflow: hidden;
-                // box-shadow: 0 0 1.2em rgb(27, 27, 27);
                 border: solid $background 3px;
+                transition: transform 150ms ease;
 
                 img {
                     padding: 1.5em 1.5em 0;
@@ -212,12 +220,21 @@ img {
 
                 .card-text {
                     padding: 1em 1.5em;
+                    text-align: center;
+                    color: $background;
 
                     h4 {
-                        font-weight: bold;
+                        font-weight: normal;
                         font-size: 1.3em;
                         margin: 0;
+                        color: white;
                     }
+                }
+
+                &:hover {
+                    transform: translateY(-1em);
+                    transition: transform 150ms ease;
+                    box-shadow: 0 0.7em 1.5em rgba(0, 0, 0, 0.85);
                 }
             }
 
@@ -237,6 +254,12 @@ img {
 
         img {
             margin-bottom: 3em;
+            transition: transform 150ms ease;
+
+            &:hover {
+                transform: translateY(-0.5em) scale(1.1);
+                transition: transform 150ms ease;
+            }
         }
 
         .right-col {
@@ -249,15 +272,21 @@ img {
 
             a {
                 text-decoration: none;
-                color: $text;
+                color: $primary;
                 display: inline-block;
-                background: $primary;
+                background: $background-light;
                 font-size: 20px;
 
                 font-weight: bold;
                 margin-top: 0.5em;
-                padding: 0.8em 2em;
+                padding: 0.7em 2em;
+                border: solid $primary 4px;
                 border-radius: 50ch;
+
+                &:hover {
+                    color: white;
+                    background: $primary;
+                }
             }
         }
     }
@@ -380,6 +409,11 @@ footer {
                     li {
                         list-style: none;
                         padding: 0.22em 0;
+
+                        &:hover {
+                            color: white;
+                            font-weight: bold;
+                        }
                     }
                 }
 
