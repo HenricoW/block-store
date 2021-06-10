@@ -20,6 +20,24 @@ img {
   margin: 0 2em;
 }
 
+.btn-cta {
+  text-decoration: none;
+  color: #007af3;
+  display: inline-block;
+  background: #ececec;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 0.5em;
+  padding: 0.5em 1.2em;
+  border: solid #007af3 4px;
+  border-radius: 50ch;
+}
+
+.btn-cta:hover {
+  color: white;
+  background: #007af3;
+}
+
 .navigation {
   background: #cecece;
   position: fixed;
@@ -43,6 +61,8 @@ img {
 }
 
 .navigation .container .logo {
+  display: inline-block;
+  margin: 0;
   font-size: 1.3em;
   text-decoration: none;
   font-weight: bold;
@@ -144,24 +164,9 @@ img {
   font-size: 1em;
 }
 
-.hero-section .container .left-col a {
-  text-decoration: none;
-  color: #007af3;
-  display: inline-block;
-  background: #ececec;
-  font-size: 1.3em;
-  font-weight: bold;
-  margin-top: 0.5em;
-  padding: 0.5em 1.2em;
-  border: solid #007af3 4px;
-  border-radius: 50ch;
+.hero-section .container .left-col .btn-hero {
   -webkit-box-shadow: 0 0.4em 1em #444;
           box-shadow: 0 0.4em 1em #444;
-}
-
-.hero-section .container .left-col a:hover {
-  color: white;
-  background: #007af3;
 }
 
 .hero-section .container img {
@@ -306,24 +311,6 @@ img {
 .exclusive-product .container .right-col h1 {
   color: #007af3;
   font-size: 2em;
-}
-
-.exclusive-product .container .right-col a {
-  text-decoration: none;
-  color: #007af3;
-  display: inline-block;
-  background: #ececec;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 0.5em;
-  padding: 0.5em 1.2em;
-  border: solid #007af3 4px;
-  border-radius: 50ch;
-}
-
-.exclusive-product .container .right-col a:hover {
-  color: white;
-  background: #007af3;
 }
 
 .testimonials .container .grid-testimonial {
