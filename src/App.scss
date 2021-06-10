@@ -488,6 +488,12 @@ footer {
         }
     }
 
+    .latest-products .container .grid-latest {
+        .hidden-sm {
+            display: block;
+        }
+    }
+
     footer .container .grid-footer {
         padding: 0 2em;
     }
@@ -576,8 +582,9 @@ footer {
     }
 
     .latest-products .container .grid-latest,
+    .featured-products .container .grid-featured,
     .testimonials .container .grid-testimonial {
-        .hidden-sm {
+        .hidden-md {
             display: block;
         }
 
@@ -627,4 +634,8 @@ footer {
             }
         }
     }
+}
+
+.hidden {
+    display: none !important;
 }

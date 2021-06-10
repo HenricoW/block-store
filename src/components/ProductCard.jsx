@@ -1,10 +1,14 @@
 import React from "react";
 
 export const ProductCard = (props) => {
-    const { title, price, image, hiddenSm } = props;
+    const { title, price, image, hiddenSm, hiddenMd, hidden } = props;
 
     return (
-        <div className={`product-card ${hiddenSm && "hidden-sm"}`}>
+        <div
+            className={`product-card ${hiddenSm ? "hidden-sm" : ""} ${hiddenMd ? "hidden-md" : ""} ${
+                hidden ? "hidden" : ""
+            }`}
+        >
             <img src={`/images/${image}`} alt="featured product" />
             <div className="card-text">
                 <h4>{title}</h4>

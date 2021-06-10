@@ -4,7 +4,7 @@ export const TestimonialCard = (props) => {
     const { text, image, name, hiddenSm } = props;
 
     return (
-        <div className={`testimonial-card ${hiddenSm && "hidden-sm"}`}>
+        <div className={`testimonial-card ${hiddenSm ? "hidden-sm" : ""}`}>
             <img src="/images/quote-blue.png" alt="quote" className="quote-image" />
             <p>{text}</p>
             <div className="rating"></div>

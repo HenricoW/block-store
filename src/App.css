@@ -513,6 +513,9 @@ footer .container .copyright::before {
   .hero-section .container .left-col a {
     margin-top: 2.5em;
   }
+  .latest-products .container .grid-latest .hidden-sm {
+    display: block;
+  }
   footer .container .grid-footer {
     padding: 0 2em;
   }
@@ -600,11 +603,13 @@ footer .container .copyright::before {
   footer .container .grid-footer .footer-links {
     grid-column: 7 / -1;
   }
-  .latest-products .container .grid-latest .hidden-sm,
-  .testimonials .container .grid-testimonial .hidden-sm {
+  .latest-products .container .grid-latest .hidden-md,
+  .featured-products .container .grid-featured .hidden-md,
+  .testimonials .container .grid-testimonial .hidden-md {
     display: block;
   }
   .latest-products .container .grid-latest .testimonial-card,
+  .featured-products .container .grid-featured .testimonial-card,
   .testimonials .container .grid-testimonial .testimonial-card {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -650,5 +655,9 @@ footer .container .copyright::before {
   footer .container .grid-footer .footer-links .socials .social-icons a {
     padding: 5px 10px;
   }
+}
+
+.hidden {
+  display: none !important;
 }
 /*# sourceMappingURL=App.css.map */
