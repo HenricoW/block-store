@@ -1,4 +1,11 @@
 import "./App.css";
+
+// 3rd party
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+import Authereum from "authereum";
+
+// components & pages
 import { BrandsList } from "./components/BrandsList";
 import { ButtonCTA } from "./components/ButtonCTA";
 import { Footer } from "./components/Footer";
@@ -8,9 +15,17 @@ import { TestimonialCard } from "./components/TestimonialCard";
 import { productsTemp, reviews } from "./dataTemp";
 
 // use for featured and latest, condition data from store before passing to this fn
-const renderProductList = (products) => {
+const renderProductList = (products, limitSmall, limitMedium, limit) => {
     return products.map((prod, idx) => (
-        <ProductCard key={prod.id} title={prod.title} price={prod.price} image={prod.image} hiddenSm={idx >= 2} />
+        <ProductCard
+            key={prod.id}
+            title={prod.title}
+            price={prod.price}
+            image={prod.image}
+            hiddenSm={idx >= limitSmall && idx < limitMedium}
+            hiddenMd={idx >= limitMedium && idx < limit}
+            hidden={idx >= limit}
+        />
     ));
 };
 
@@ -26,10 +41,23 @@ const renderTestimonials = (reviews) => {
     ));
 };
 
+const providerOptions = {
+    authereum: {
+        package: Authereum,
+    },
+};
+
+const web3Modal = new Web3Modal({ providerOptions });
+
 function App() {
+    let provider;
+    const web3connect = async () => {
+        provider = await web3Modal.connect();
+    };
+
     return (
         <>
-            <Navigation />
+            <Navigation web3connect={web3connect} />
             <section className="hero-section">
                 <div className="container">
                     <div className="left-col">
@@ -45,7 +73,7 @@ function App() {
             <section className="featured-products">
                 <div className="container">
                     <h2>Featured Products</h2>
-                    <div className="grid-featured">{renderProductList(productsTemp)}</div>
+                    <div className="grid-featured">{renderProductList(productsTemp, 2, 2, 3)}</div>
                 </div>
             </section>
             <section className="exclusive-product">
@@ -67,7 +95,7 @@ function App() {
             <section className="latest-products">
                 <div className="container">
                     <h2>Latest Products</h2>
-                    <div className="grid-latest">{renderProductList(productsTemp)}</div>
+                    <div className="grid-latest">{renderProductList(productsTemp, 2, 4, 6)}</div>
                 </div>
             </section>
             <section className="testimonials">

@@ -1,4 +1,9 @@
-export const Navigation = () => {
+export const Navigation = ({ web3connect }) => {
+    const walletConnect = (e) => {
+        e.preventDefault();
+        web3connect();
+    };
+
     return (
         <div className="navigation">
             <div className="container">
@@ -26,12 +31,9 @@ export const Navigation = () => {
                         <a href="/cart" className="cart-black">
                             <img src="/images/shopping-cart-black.svg" alt="your account" />
                         </a>
-                        <a href="/cart" className="wallet-black">
+                        <a href="/" className="wallet-black" onClick={walletConnect}>
                             <img src="/images/wallet-black.svg" alt="your account" />
                         </a>
-                        {/* <a href="/cart">
-                                <img src="/images/cart.png" alt="shopping cart" />
-                            </a> */}
                     </div>
                 </nav>
             </div>
