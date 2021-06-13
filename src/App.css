@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 body {
-  font-family: Poppins, sans-serif;
+  font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
   background: #cecece;
   color: #333;
 }
@@ -128,18 +128,23 @@ img {
           justify-content: space-evenly;
 }
 
-.navigation .container nav .nav-rh-icons .cart-black {
+.navigation .container nav .nav-rh-icons .cart-black,
+.navigation .container nav .nav-rh-icons .wallet-black {
   display: none;
 }
 
 .navigation .container nav .nav-rh-icons img {
   width: 5.5em;
-  padding: 1em;
-  margin-left: 0.5em;
+  padding: 0.8em;
 }
 
 .navigation .container nav .nav-rh-icons img:hover {
   background: #444;
+}
+
+.navigation .container nav .nav-rh-icons .wallet-white > img {
+  padding: 0.8em 1.2em;
+  margin-top: 0.3em;
 }
 
 .hero-section {
@@ -525,11 +530,15 @@ footer .container .copyright::before {
   .navigation .container {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 150px auto;
-        grid-template-columns: 150px auto;
+    -ms-grid-columns: 300px auto;
+        grid-template-columns: 300px auto;
     -webkit-box-pack: unset;
         -ms-flex-pack: unset;
             justify-content: unset;
+  }
+  .navigation .container .logo {
+    -ms-grid-column-align: start;
+        justify-self: start;
   }
   .navigation .container .menu-open,
   .navigation .container .menu-close {
@@ -543,6 +552,7 @@ footer .container .copyright::before {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    max-width: none;
     position: unset;
     height: unset;
     width: unset;
@@ -575,16 +585,18 @@ footer .container .copyright::before {
     display: -ms-flexbox;
     display: flex;
   }
-  .navigation .container nav .nav-rh-icons .cart-black {
+  .navigation .container nav .nav-rh-icons .cart-black,
+  .navigation .container nav .nav-rh-icons .wallet-black {
     display: block;
   }
-  .navigation .container nav .nav-rh-icons .cart-white {
+  .navigation .container nav .nav-rh-icons .cart-white,
+  .navigation .container nav .nav-rh-icons .wallet-white {
     display: none;
   }
   .navigation .container nav .nav-rh-icons a {
     display: block;
     padding: 0;
-    margin: 0 8px;
+    margin-left: 12px;
   }
   .navigation .container nav .nav-rh-icons a img {
     display: block;

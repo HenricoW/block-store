@@ -28,6 +28,9 @@ export const Navigation = ({ web3connect }) => {
                         <a href="/cart" className="cart-white">
                             <img src="/images/shopping-cart-white.svg" alt="your account" />
                         </a>
+                        <a href="/" className="wallet-white" onClick={walletConnect}>
+                            <img src="/images/wallet-white.svg" alt="your account" />
+                        </a>
                         <a href="/cart" className="cart-black">
                             <img src="/images/shopping-cart-black.svg" alt="your account" />
                         </a>

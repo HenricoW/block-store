@@ -13,7 +13,7 @@ $textdark: #333;
 $nav-height: 69px;
 
 body {
-    font-family: Poppins, sans-serif;
+    font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
     background: $background;
     color: $textdark;
 }
@@ -130,18 +130,26 @@ img {
                 display: flex;
                 justify-content: space-evenly;
 
-                .cart-black {
+                .cart-black,
+                .wallet-black {
                     display: none;
                 }
 
                 img {
                     width: 5.5em;
-                    padding: 1em;
-                    margin-left: 0.5em;
+                    padding: 0.8em;
+                    // padding-left: 1em;
+                    // margin-left: 0.5em;
 
                     &:hover {
                         background: $anchors;
                     }
+                }
+
+                // .wallet-black > img,
+                .wallet-white > img {
+                    padding: 0.8em 1.2em;
+                    margin-top: 0.3em;
                 }
             }
         }
@@ -502,8 +510,12 @@ footer {
 @media only screen and (min-width: 900px) {
     .navigation .container {
         display: grid;
-        grid-template-columns: 150px auto;
+        grid-template-columns: 300px auto;
         justify-content: unset;
+
+        .logo {
+            justify-self: start;
+        }
 
         .menu-open,
         .menu-close {
@@ -514,6 +526,7 @@ footer {
             justify-self: end;
             display: flex;
             justify-content: space-between;
+            max-width: none;
             position: unset;
             height: unset;
             width: unset;
@@ -543,18 +556,20 @@ footer {
                 margin: auto 0;
                 display: flex;
 
-                .cart-black {
+                .cart-black,
+                .wallet-black {
                     display: block;
                 }
 
-                .cart-white {
+                .cart-white,
+                .wallet-white {
                     display: none;
                 }
 
                 a {
                     display: block;
                     padding: 0;
-                    margin: 0 8px;
+                    margin-left: 12px;
 
                     img {
                         display: block;
