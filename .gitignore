@@ -24,3 +24,5 @@ yarn-error.log*
 
 public/images/unused
 public/images/quote-black.png
+
+src/contracts/

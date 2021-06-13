@@ -6,6 +6,7 @@ import Web3Modal from "web3modal";
 import Authereum from "authereum";
 
 import MockUSD from "./contracts/MockUSD.json";
+import Web3Shop from "./contracts/Web3Shop.json";
 
 // components & pages
 import { BrandsList } from "./components/BrandsList";
@@ -15,7 +16,7 @@ import { Navigation } from "./components/Navigation";
 import { ProductCard } from "./components/ProductCard";
 import { TestimonialCard } from "./components/TestimonialCard";
 import { productsTemp, reviews } from "./dataTemp";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // use for featured and latest, condition data from store before passing to this fn
 const renderProductList = (products, limitSmall, limitMedium, limit) => {
@@ -50,26 +51,37 @@ const providerOptions = {
     },
 };
 const mUSDaddr = "0x07FEA0C6A2575a979c7BCA7147aB0aB95f62C876";
+const w3Shop = "0xcD5A36bF9A26233887623318D0403F023476695d";
 
 const account2 = "0x31BE7847554B0513929DfBEE908F0F6c722498Aa";
 
 const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
 
+const handleMMError = (err) => {
+    if (err.message.includes("User denied transaction")) {
+        // notify user with modal
+        alert("You rejected the transaction"); // change to modal
+    }
+    console.log(err.message);
+};
+
 let provider, currentAcc;
 function App() {
     const [web3, setWeb3] = useState(undefined);
     const [mUSDcontr, setMusdContr] = useState(undefined);
+    const [w3ShopContr, setW3ShopContr] = useState(undefined);
     const [accounts, setAccounts] = useState(undefined);
 
     const web3connect = async () => {
         provider = await web3Modal.connect();
-        console.log("cached provider: ", web3Modal.cachedProvider);
         const WEB3 = new Web3(provider);
         const MUSDCONTR = new WEB3.eth.Contract(MockUSD.abi, mUSDaddr);
+        const W3SCONTR = new WEB3.eth.Contract(Web3Shop.abi, w3Shop);
         const ACCs = await WEB3.eth.getAccounts();
 
         setWeb3(WEB3);
         setMusdContr(MUSDCONTR);
+        setW3ShopContr(W3SCONTR);
         setAccounts(ACCs);
         currentAcc = ACCs[0];
 
@@ -86,29 +98,35 @@ function App() {
     // }, []);
 
     const onBuy = async (price) => {
-        if (web3 === undefined || accounts === undefined) {
+        if (web3 === undefined || accounts === undefined || w3ShopContr === undefined) {
             web3connect();
             return;
         }
 
         const amount = web3.utils.toWei(price.toString());
 
+        await mUSDcontr.methods
+            .approve(w3Shop, amount)
+            .send({ from: currentAcc })
+            .catch((err) => {
+                handleMMError(err);
+            });
+
+        await w3ShopContr.methods
+            .purchase(amount, currentAcc)
+            .send({ from: currentAcc })
+            .catch((err) => {
+                handleMMError(err);
+            });
+
+        // await mUSDcontr.methods.transferFrom(currentAcc, account2, amount).send({ from: account2 });
         // await mUSDcontr.methods
-        //     .approve(account2, amount)
+        //     .transfer(account2, amount)
         //     .send({ from: currentAcc })
         //     .catch((err) => {
         //         if (err.message.includes("User denied transaction")) alert("You rejected the transaction");
         //         console.log(err);
         //     });
-
-        // await mUSDcontr.methods.transferFrom(currentAcc, account2, amount).send({ from: account2 });
-        await mUSDcontr.methods
-            .transfer(account2, amount)
-            .send({ from: currentAcc })
-            .catch((err) => {
-                if (err.message.includes("User denied transaction")) alert("You rejected the transaction");
-                console.log(err);
-            });
     };
 
     return (
