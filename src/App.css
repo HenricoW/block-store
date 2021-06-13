@@ -20,6 +20,14 @@ img {
   margin: 0 2em;
 }
 
+.hidden-sm {
+  display: none;
+}
+
+.hidden-md {
+  display: none;
+}
+
 .btn-cta {
   text-decoration: none;
   color: #007af3;
@@ -57,7 +65,6 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  position: relative;
 }
 
 .navigation .container .logo {
@@ -67,7 +74,7 @@ img {
   text-decoration: none;
   font-weight: bold;
   color: #333;
-  padding: 0 0.5em;
+  padding: 0.1em 0.5em 0.2em;
   border: solid #007af3 3px;
   border-radius: 0.4em;
 }
@@ -82,7 +89,6 @@ img {
 }
 
 .navigation .container nav {
-  display: none;
   position: absolute;
   top: 0;
   right: 0;
@@ -267,20 +273,6 @@ img {
           box-shadow: 0 0.7em 1.5em rgba(0, 0, 0, 0.85);
 }
 
-.featured-products .container .grid-featured .hidden-sm,
-.featured-products .container .grid-latest .hidden-sm,
-.latest-products .container .grid-featured .hidden-sm,
-.latest-products .container .grid-latest .hidden-sm {
-  display: none;
-}
-
-.featured-products .container .grid-featured .hidden-md,
-.featured-products .container .grid-latest .hidden-md,
-.latest-products .container .grid-featured .hidden-md,
-.latest-products .container .grid-latest .hidden-md {
-  display: none;
-}
-
 .exclusive-product {
   background: lightblue;
 }
@@ -369,10 +361,6 @@ img {
   font-weight: bold;
   font-size: 1.2em;
   margin-top: 0.5em;
-}
-
-.testimonials .container .grid-testimonial .hidden-sm {
-  display: none;
 }
 
 .brands {
@@ -518,9 +506,6 @@ footer .container .copyright::before {
   .hero-section .container .left-col a {
     margin-top: 2.5em;
   }
-  .latest-products .container .grid-latest .hidden-sm {
-    display: block;
-  }
   footer .container .grid-footer {
     padding: 0 2em;
   }
@@ -615,11 +600,6 @@ footer .container .copyright::before {
   footer .container .grid-footer .footer-links {
     grid-column: 7 / -1;
   }
-  .latest-products .container .grid-latest .hidden-md,
-  .featured-products .container .grid-featured .hidden-md,
-  .testimonials .container .grid-testimonial .hidden-md {
-    display: block;
-  }
   .latest-products .container .grid-latest .testimonial-card,
   .featured-products .container .grid-featured .testimonial-card,
   .testimonials .container .grid-testimonial .testimonial-card {
@@ -639,6 +619,9 @@ footer .container .copyright::before {
 @media only screen and (min-width: 1100px) {
   .container {
     margin: 0 15%;
+  }
+  .hidden-md {
+    display: block;
   }
   .navigation .container {
     padding: 1em 0;

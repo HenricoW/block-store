@@ -1,7 +1,15 @@
+import { useRef } from "react";
+
 export const Navigation = ({ web3connect }) => {
     const walletConnect = (e) => {
         e.preventDefault();
         web3connect();
+    };
+
+    const navRef = useRef(null);
+
+    const toggleHide = () => {
+        navRef.current.classList.toggle("hidden-sm");
     };
 
     return (
@@ -10,9 +18,14 @@ export const Navigation = ({ web3connect }) => {
                 <a href="/" className="logo">
                     <span>Web3</span> Store
                 </a>
-                <img src="/images/menu.svg" alt="open mobile menu" className="menu-open" />
-                <nav className="menu">
-                    <img src="/images/exit.svg" alt="close mobile menu" className="menu-close" />
+                <img src="/images/menu.svg" alt="open mobile menu" className="menu-open" onClick={() => toggleHide()} />
+                <nav className="menu hidden-sm" ref={navRef}>
+                    <img
+                        src="/images/exit.svg"
+                        alt="close mobile menu"
+                        className="menu-close"
+                        onClick={() => toggleHide()}
+                    />
                     <ul>
                         <li>
                             <a href="/products">Products</a>
