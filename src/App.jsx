@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 
 // 3rd party
 import Web3 from "web3";
@@ -9,41 +10,12 @@ import MockUSD from "./contracts/MockUSD.json";
 import Web3Shop from "./contracts/Web3Shop.json";
 
 // components & pages
-import { BrandsList } from "./components/BrandsList";
-import { ButtonCTA } from "./components/ButtonCTA";
 import { Footer } from "./components/Footer";
 import { Navigation } from "./components/Navigation";
-import { ProductCard } from "./components/ProductCard";
-import { TestimonialCard } from "./components/TestimonialCard";
-import { productsTemp, reviews } from "./dataTemp";
-import { useState } from "react";
+import { HomePage } from "./pages/HomePage";
 
-// use for featured and latest, condition data from store before passing to this fn
-const renderProductList = (products, limitSmall, limitMedium, limit) => {
-    return products.map((prod, idx) => (
-        <ProductCard
-            key={prod.id}
-            title={prod.title}
-            price={prod.price}
-            image={prod.image}
-            hiddenSm={idx >= limitSmall && idx < limitMedium}
-            hiddenMd={idx >= limitMedium && idx < limit}
-            hidden={idx >= limit}
-        />
-    ));
-};
-
-const renderTestimonials = (reviews) => {
-    return reviews.map((review, idx) => (
-        <TestimonialCard
-            key={review.id}
-            text={review.text}
-            image={review.image}
-            name={review.name}
-            hiddenSm={idx >= 2}
-        />
-    ));
-};
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Page404 } from "./pages/Page404";
 
 const providerOptions = {
     authereum: {
@@ -52,18 +24,9 @@ const providerOptions = {
 };
 const mUSDaddr = "0x07FEA0C6A2575a979c7BCA7147aB0aB95f62C876";
 const w3Shop = "0xcD5A36bF9A26233887623318D0403F023476695d";
-
 const account2 = "0x31BE7847554B0513929DfBEE908F0F6c722498Aa";
 
 const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
-
-const handleMMError = (err) => {
-    if (err.message.includes("User denied transaction")) {
-        // notify user with modal
-        alert("You rejected the transaction"); // change to modal
-    }
-    console.log(err.message);
-};
 
 let provider, currentAcc;
 function App() {
@@ -89,97 +52,26 @@ function App() {
         console.log("current account: ", currentAcc);
     };
 
-    // useEffect(() => {
-    //     const init = async () => {
-    //         await web3connect();
-    //     };
-
-    //     init();
-    // }, []);
-
-    const onBuy = async (price) => {
-        if (web3 === undefined || accounts === undefined || w3ShopContr === undefined) {
-            web3connect();
-            return;
-        }
-
-        const amount = web3.utils.toWei(price.toString());
-
-        await mUSDcontr.methods
-            .approve(w3Shop, amount)
-            .send({ from: currentAcc })
-            .catch((err) => {
-                handleMMError(err);
-            });
-
-        await w3ShopContr.methods
-            .purchase(amount, currentAcc)
-            .send({ from: currentAcc })
-            .catch((err) => {
-                handleMMError(err);
-            });
-
-        // await mUSDcontr.methods.transferFrom(currentAcc, account2, amount).send({ from: account2 });
-        // await mUSDcontr.methods
-        //     .transfer(account2, amount)
-        //     .send({ from: currentAcc })
-        //     .catch((err) => {
-        //         if (err.message.includes("User denied transaction")) alert("You rejected the transaction");
-        //         console.log(err);
-        //     });
-    };
-
     return (
-        <>
+        <BrowserRouter>
             <Navigation web3connect={web3connect} />
-            <section className="hero-section">
-                <div className="container">
-                    <div className="left-col">
-                        <h1>Work out with new style</h1>
-                        <p>Presenting a new way to shop with Web 3.0</p>
-                        <ButtonCTA to={"/products"} isHero={true}>
-                            Experience it now!
-                        </ButtonCTA>
-                    </div>
-                    <img src="/images/image1.png" alt="hero" />
-                </div>
-            </section>
-            <section className="featured-products">
-                <div className="container">
-                    <h2>Featured Products</h2>
-                    <div className="grid-featured">{renderProductList(productsTemp, 2, 2, 3)}</div>
-                </div>
-            </section>
-            <section className="exclusive-product">
-                <div className="container">
-                    <img src="/images/exclusive.png" alt="exclusive product" />
-                    <div className="right-col">
-                        <h3>Exclusively available on the Web3 Store</h3>
-                        <h1>Smart Band 9000</h1>
-                        <p>
-                            The Smart Band 9000 can... wait for it... TELL THE TIME! Get this bleeding edge piece of
-                            technology now. Be the envy of your friends
-                        </p>
-                        <ButtonCTA to={"/product/1234"} isHero={false} fn={() => onBuy(32.95)}>
-                            Buy now
-                        </ButtonCTA>
-                    </div>
-                </div>
-            </section>
-            <section className="latest-products">
-                <div className="container">
-                    <h2>Latest Products</h2>
-                    <div className="grid-latest">{renderProductList(productsTemp, 2, 4, 6)}</div>
-                </div>
-            </section>
-            <section className="testimonials">
-                <div className="container">
-                    <div className="grid-testimonial">{renderTestimonials(reviews)}</div>
-                </div>
-            </section>
-            <BrandsList />
+            <Switch>
+                <Route path="/" exact>
+                    <HomePage
+                        web3connect={web3connect}
+                        web3={web3}
+                        mUSDcontr={mUSDcontr}
+                        w3ShopContr={w3ShopContr}
+                        accounts={accounts}
+                    />
+                </Route>
+                {/* <Route path="/products/" exact component={ProductsPage} />
+                <Route path="/products/:productId" exact />
+                <Route path="/cart" exact /> */}
+                <Route component={Page404} />
+            </Switch>
             <Footer />
-        </>
+        </BrowserRouter>
     );
 }
 
