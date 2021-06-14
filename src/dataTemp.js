@@ -109,4 +109,12 @@ const brands = [
     },
 ];
 
-export { productsTemp, reviews, brands };
+const exclusiveProd = {
+    title: "Smart Band 9000",
+    desription:
+        "The Smart Band 9000 can... wait for it... TELL THE TIME! Get this bleeding edge piece of technology now. Be the envy of your friends",
+    price: 32.95,
+    image: "exclusive.png",
+};
+
+export { productsTemp, reviews, brands, exclusiveProd };

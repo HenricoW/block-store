@@ -1,25 +1,9 @@
 import React from "react";
 import { BrandsList } from "../components/BrandsList";
 import { ButtonCTA } from "../components/ButtonCTA";
-import { ProductCard } from "../components/ProductCard";
 import { TestimonialCard } from "../components/TestimonialCard";
 
-import { productsTemp, reviews } from "../dataTemp";
-
-// use for featured and latest, condition data from store before passing to this fn
-const renderProductList = (products, limitSmall, limitMedium, limit) => {
-    return products.map((prod, idx) => (
-        <ProductCard
-            key={prod.id}
-            title={prod.title}
-            price={prod.price}
-            image={prod.image}
-            hiddenSm={idx >= limitSmall && idx < limitMedium}
-            hiddenMd={idx >= limitMedium && idx < limit}
-            hidden={idx >= limit}
-        />
-    ));
-};
+import { productsTemp, reviews, exclusiveProd } from "../dataTemp";
 
 const renderTestimonials = (reviews) => {
     return reviews.map((review, idx) => (
@@ -41,7 +25,7 @@ const handleMMError = (err) => {
     console.log(err.message);
 };
 
-export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts }) => {
+export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts, renderProductList }) => {
     const onBuy = async (price) => {
         if (web3 === undefined || mUSDcontr === undefined || w3ShopContr === undefined) {
             web3connect();
@@ -49,21 +33,18 @@ export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts }
         }
 
         const amount = web3.utils.toWei(price.toString());
-
-        console.log("mUSDcontr @:", mUSDcontr.options.address);
-        console.log("w3ShopContr @:", w3ShopContr.options.address);
-        console.log("currentAcc @:", accounts[0]);
+        const currAcc = accounts[0];
 
         await mUSDcontr.methods
             .approve(w3ShopContr.options.address, amount)
-            .send({ from: accounts[0] })
+            .send({ from: currAcc })
             .catch((err) => {
                 handleMMError(err);
             });
 
         await w3ShopContr.methods
-            .purchase(amount, accounts[0])
-            .send({ from: accounts[0] })
+            .purchase(amount, currAcc)
+            .send({ from: currAcc })
             .catch((err) => {
                 handleMMError(err);
             });
@@ -76,7 +57,7 @@ export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts }
                     <div className="left-col">
                         <h1>Work out with new style</h1>
                         <p>Presenting a new way to shop with Web 3.0</p>
-                        <ButtonCTA to={"/products"} isHero={true}>
+                        <ButtonCTA to={"/products"} isHero={true} fn={() => {}}>
                             Experience it now!
                         </ButtonCTA>
                     </div>
@@ -94,12 +75,9 @@ export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts }
                     <img src="/images/exclusive.png" alt="exclusive product" />
                     <div className="right-col">
                         <h3>Exclusively available on the Web3 Store</h3>
-                        <h1>Smart Band 9000</h1>
-                        <p>
-                            The Smart Band 9000 can... wait for it... TELL THE TIME! Get this bleeding edge piece of
-                            technology now. Be the envy of your friends
-                        </p>
-                        <ButtonCTA to={"/product/1234"} isHero={false} fn={() => onBuy(32.95)}>
+                        <h1>{exclusiveProd.title}</h1>
+                        <p>{exclusiveProd.desription}</p>
+                        <ButtonCTA to={"/"} isHero={false} fn={() => onBuy(exclusiveProd.price)}>
                             Buy now
                         </ButtonCTA>
                     </div>
