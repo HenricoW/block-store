@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export const Navigation = ({ web3connect }) => {
     const walletConnect = (e) => {
@@ -15,9 +16,9 @@ export const Navigation = ({ web3connect }) => {
     return (
         <div className="navigation">
             <div className="container">
-                <a href="/" className="logo">
+                <Link to="/" className="logo">
                     <span>Web3</span> Store
-                </a>
+                </Link>
                 <img src="/images/menu.svg" alt="open mobile menu" className="menu-open" onClick={() => toggleHide()} />
                 <nav className="menu hidden-sm" ref={navRef}>
                     <img
@@ -28,28 +29,28 @@ export const Navigation = ({ web3connect }) => {
                     />
                     <ul>
                         <li>
-                            <a href="/products">Products</a>
+                            <Link to="/products">Products</Link>
                         </li>
                         <li>
-                            <a href="/about">About</a>
+                            <Link to="/about">About</Link>
                         </li>
                         <li>
-                            <a href="/contact">Contact</a>
+                            <Link to="/contLinkct">Contact</Link>
                         </li>
                     </ul>
                     <div className="nav-rh-icons">
-                        <a href="/cart" className="cart-white">
+                        <Link to="/cart" className="cart-white">
                             <img src="/images/shopping-cart-white.svg" alt="your account" />
-                        </a>
-                        <a href="/" className="wallet-white" onClick={walletConnect}>
+                        </Link>
+                        <Link to="/" className="wallet-white" onClick={walletConnect}>
                             <img src="/images/wallet-white.svg" alt="your account" />
-                        </a>
-                        <a href="/cart" className="cart-black">
+                        </Link>
+                        <Link to="/cart" className="cart-black">
                             <img src="/images/shopping-cart-black.svg" alt="your account" />
-                        </a>
-                        <a href="/" className="wallet-black" onClick={walletConnect}>
+                        </Link>
+                        <Link to="/" className="wallet-black" onClick={walletConnect}>
                             <img src="/images/wallet-black.svg" alt="your account" />
-                        </a>
+                        </Link>
                     </div>
                 </nav>
             </div>

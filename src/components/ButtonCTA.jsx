@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const ButtonCTA = (props) => {
     const { to, isHero, fn } = props;
 
@@ -7,8 +9,8 @@ export const ButtonCTA = (props) => {
     };
 
     return (
-        <a href={to} className={`btn-cta ${isHero ? "btn-hero" : ""}`} onClick={handleClick}>
+        <Link to={to} className={`btn-cta ${isHero ? "btn-hero" : ""}`} onClick={handleClick}>
             {props.children}
-        </a>
+        </Link>
     );
 };
