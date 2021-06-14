@@ -193,7 +193,8 @@ img {
 }
 
 .featured-products,
-.latest-products {
+.latest-products,
+.all-products {
     background: $dark;
     color: $text;
 
@@ -204,16 +205,6 @@ img {
             margin-bottom: 3em;
             position: relative;
 
-            // &::before {
-            //     content: "";
-            //     position: absolute;
-            //     background: $primary;
-            //     top: 45%;
-            //     left: 0;
-            //     height: 0.2em;
-            //     width: 90px;
-            // }
-
             &::after {
                 content: "";
                 position: absolute;
@@ -222,7 +213,6 @@ img {
                 right: 30%;
                 left: 30%;
                 height: 0.2em;
-                // width: 90px;
             }
         }
 
@@ -240,7 +230,6 @@ img {
 
                 img {
                     padding: 1em 1em 0;
-                    // min-width: 200px;
                 }
 
                 .card-text {
@@ -263,6 +252,12 @@ img {
                 }
             }
         }
+    }
+}
+
+.all-products {
+    .all-prod-heading {
+        margin-top: 5em;
     }
 }
 
