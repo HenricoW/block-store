@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-
-import { productsTemp } from "../dataTemp";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProduct } from "../redux/actions/currentProductActions";
 
 export const ProductDetailPage = () => {
-    const { product_id } = useParams();
     useEffect(() => {
         window.scroll(0, 0);
     }, []);
 
-    const product = productsTemp.filter((item) => item.id === Number(product_id))[0];
+    const { product_id } = useParams();
 
-    // console.log(productsTemp);
-    console.log(product);
-    console.log(product_id);
+    // redux
+    const dispatch = useDispatch();
+    dispatch(selectProduct(Number(product_id)));
+    const product = useSelector((state) => state.allProducts.currentItem);
 
     const handleSubmit = (e) => {
         e.preventDefault();

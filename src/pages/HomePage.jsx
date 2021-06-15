@@ -1,9 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { BrandsList } from "../components/BrandsList";
 import { ButtonCTA } from "../components/ButtonCTA";
 import { TestimonialCard } from "../components/TestimonialCard";
-
-import { productsTemp, reviews, exclusiveProd } from "../dataTemp";
 
 const renderTestimonials = (reviews) => {
     return reviews.map((review, idx) => (
@@ -50,6 +49,11 @@ export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, 
             });
     };
 
+    // redux
+    const products = useSelector((state) => state.allProducts.products);
+    const reviews = useSelector((state) => state.allReviews);
+    const exclusiveProd = useSelector((state) => state.exclusiveProd);
+
     return (
         <div>
             <section className="hero-section">
@@ -67,7 +71,7 @@ export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, 
             <section className="featured-products">
                 <div className="container">
                     <h2>Featured Products</h2>
-                    <div className="grid-featured">{renderProductList(productsTemp, 2, 2, 3)}</div>
+                    <div className="grid-featured">{renderProductList(products, 2, 2, 3)}</div>
                 </div>
             </section>
             <section className="exclusive-product">
@@ -86,7 +90,7 @@ export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, 
             <section className="latest-products">
                 <div className="container">
                     <h2>Latest Products</h2>
-                    <div className="grid-latest">{renderProductList(productsTemp, 2, 4, 6)}</div>
+                    <div className="grid-latest">{renderProductList(products, 2, 4, 6)}</div>
                 </div>
             </section>
             <section className="testimonials">

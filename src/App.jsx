@@ -20,6 +20,14 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { Page404 } from "./pages/Page404";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
 
+// redux
+import { productsTemp, reviews, exclusiveProd } from "./dataTemp";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setProducts } from "./redux/actions/productsActions";
+import { setReviews } from "./redux/actions/reviewsActions";
+import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
+
 const providerOptions = {
     authereum: {
         package: Authereum,
@@ -32,6 +40,7 @@ const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
 
 let provider, currentAcc;
 function App() {
+    // web3
     const [web3, setWeb3] = useState(undefined);
     const [mUSDcontr, setMusdContr] = useState(undefined);
     const [w3ShopContr, setW3ShopContr] = useState(undefined);
@@ -53,6 +62,12 @@ function App() {
         console.log("all accounts: ", ACCs);
         console.log("current account: ", currentAcc);
     };
+
+    // redux
+    const dispatch = useDispatch();
+    dispatch(setProducts(productsTemp));
+    dispatch(setReviews(reviews));
+    dispatch(setExclusiveProduct(exclusiveProd));
 
     // use for featured and latest, condition data from store before passing to this fn
     const renderProductList = (products, limitSmall, limitMedium, limit) => {
