@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const ProductCard = (props) => {
-    const { title, price, image, hiddenSm, hiddenMd, hidden } = props;
+    const { id, title, price, image, hiddenSm, hiddenMd, hidden } = props;
 
     return (
         <div
@@ -9,12 +10,14 @@ export const ProductCard = (props) => {
                 hidden ? "hidden" : ""
             }`}
         >
-            <img src={`/images/${image}`} alt="featured product" />
-            <div className="card-text">
-                <h4>{title}</h4>
-                <div className="rating"></div>
-                <p>$ {price}</p>
-            </div>
+            <Link to={`/products/${id}`}>
+                <img src={`/images/${image}`} alt="featured product" />
+                <div className="card-text">
+                    <h4>{title}</h4>
+                    <div className="rating"></div>
+                    <p>$ {price}</p>
+                </div>
+            </Link>
         </div>
     );
 };

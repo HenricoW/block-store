@@ -228,6 +228,10 @@ img {
                 border: solid $background 3px;
                 transition: transform 150ms ease;
 
+                a {
+                    text-decoration: none;
+                }
+
                 img {
                     padding: 1em 1em 0;
                 }
@@ -258,6 +262,82 @@ img {
 .all-products {
     .all-prod-heading {
         margin-top: 5em;
+    }
+}
+
+.product-detail {
+    background: $dark;
+    margin-top: $nav-height;
+    color: $background-light;
+
+    .container {
+        padding-bottom: 7em;
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(415px, 1fr));
+            grid-gap: 2em;
+
+            .product-image {
+                // max-width: 200px;
+                justify-self: center;
+                img {
+                    // display: block;
+                    max-width: 450px;
+                }
+            }
+
+            .product-text {
+                // max-width: 200px;
+
+                h2 {
+                    position: relative;
+                    padding: 0.3em 0;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        height: 4px;
+                        width: 100px;
+                        bottom: 0;
+                        left: 0;
+                        background: $primary;
+                    }
+                }
+
+                p {
+                    margin-bottom: 2em;
+                }
+
+                form {
+                    display: flex;
+                    align-items: center;
+
+                    input {
+                        width: 3em;
+                        height: 2em;
+                        margin-right: 1.5em;
+                        font-size: 1.5em;
+                    }
+
+                    button {
+                        padding: 0.4em 0.8em;
+                        background: white;
+                        color: $primary;
+                        font-size: 1.4em;
+                        font-weight: bold;
+                        border-radius: 5ch;
+                        border: solid $primary 4px;
+
+                        &:hover {
+                            color: white;
+                            background: $primary;
+                            border: solid white 4px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -465,7 +545,7 @@ footer {
     // }
 
     .container {
-        margin: 0 10%;
+        margin: 0 12%;
     }
 
     .navigation .container {
@@ -598,26 +678,22 @@ footer {
     }
 }
 
-@media only screen and (min-width: 1100px) {
-    .container {
-        margin: 0 15%;
-    }
-
+@media only screen and (min-width: 1150px) {
     .hidden-md {
         display: block;
     }
 
     .navigation .container {
         padding: 1em 0;
-        margin: 0 15%;
+        margin: 0 12%;
     }
 
     .exclusive-product .container {
-        margin: 0 15%;
+        margin: 0 12%;
     }
 
     footer .container {
-        margin: 0 15%;
+        margin: 0 12%;
         .grid-footer {
             padding: 0;
 

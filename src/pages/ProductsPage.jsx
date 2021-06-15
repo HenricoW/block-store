@@ -6,7 +6,7 @@ export const ProductsPage = ({ renderProductList }) => {
         <section className="all-products">
             <div className="container">
                 <h2 className="all-prod-heading">All Products</h2>
-                <div className="grid-latest">{renderProductList(productsTemp, 0, 0, 50)}</div>
+                <div className="grid-latest">{renderProductList(productsTemp, 20, 30, 50)}</div>
             </div>
         </section>
     );

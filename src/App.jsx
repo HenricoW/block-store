@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // 3rd party
 import Web3 from "web3";
@@ -13,11 +14,11 @@ import Web3Shop from "./contracts/Web3Shop.json";
 import { Footer } from "./components/Footer";
 import { Navigation } from "./components/Navigation";
 import { ProductCard } from "./components/ProductCard";
+
 import { HomePage } from "./pages/HomePage";
 import { ProductsPage } from "./pages/ProductsPage";
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Page404 } from "./pages/Page404";
+import { ProductDetailPage } from "./pages/ProductDetailPage";
 
 const providerOptions = {
     authereum: {
@@ -58,6 +59,7 @@ function App() {
         return products.map((prod, idx) => (
             <ProductCard
                 key={prod.id}
+                id={prod.id}
                 title={prod.title}
                 price={prod.price}
                 image={prod.image}
@@ -85,9 +87,7 @@ function App() {
                 <Route path="/products" exact>
                     <ProductsPage renderProductList={renderProductList} />
                 </Route>
-                {/* <Route path="/products/" exact component={ProductsPage} />
-                <Route path="/products/:productId" exact />
-                <Route path="/cart" exact /> */}
+                <Route path="/products/:product_id" exact component={ProductDetailPage} />
                 <Route component={Page404} />
             </Switch>
             <Footer />
