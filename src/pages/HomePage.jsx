@@ -25,7 +25,7 @@ const handleMMError = (err) => {
     console.log(err.message);
 };
 
-export const HomePage = ({ web3connect, web3, mUSDcontr, w3ShopContr, accounts, renderProductList }) => {
+export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, renderProductList }) => {
     const onBuy = async (price) => {
         if (web3 === undefined || mUSDcontr === undefined || w3ShopContr === undefined) {
             web3connect();

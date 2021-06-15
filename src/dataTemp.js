@@ -2,15 +2,16 @@ const productsTemp = [
     {
         id: 0,
         title: "Red Tee",
-        desription: "Red Tee",
-        price: 99.95,
+        description:
+            "Red Tee. Stay STYLIN' during the winter while keeping warm. Sourced from our domestic factories to the highest quality standards.",
+        price: 29.95,
         image: "product-1.jpg",
         featured: false,
     },
     {
         id: 1,
         title: "Black Shoes",
-        desription: "Black Shoes",
+        description: "Black Shoes. Sourced from our domestic factories to the highest quality standards.",
         price: 99.95,
         image: "product-2.jpg",
         featured: false,
@@ -18,48 +19,51 @@ const productsTemp = [
     {
         id: 2,
         title: "Sweat Pants",
-        desription: "Sweat Pants",
-        price: 99.95,
+        description:
+            "Dark gray sweat pants, made of 100% cotton. Stay STYLIN' during the winter while keeping warm. Sourced from our domestic factories to the highest quality standards.",
+        price: 39.95,
         image: "product-3.jpg",
         featured: false,
     },
     {
         id: 3,
         title: "Blue Tee",
-        desription: "Blue Tee",
-        price: 99.95,
+        description:
+            "Blue Tee. Stay STYLIN' during the winter while keeping warm. Sourced from our domestic factories to the highest quality standards.",
+        price: 29.95,
         image: "product-4.jpg",
         featured: true,
     },
     {
         id: 4,
         title: "Grey Shoes",
-        desription: "Grey Shoes",
-        price: 99.95,
+        description: "Grey Shoes. Sourced from our domestic factories to the highest quality standards.",
+        price: 109.95,
         image: "product-5.jpg",
         featured: false,
     },
     {
         id: 5,
         title: "Black Tee",
-        desription: "Black Tee",
-        price: 99.95,
+        description:
+            "Black Tee. Stay STYLIN' during the winter while keeping warm. Sourced from our domestic factories to the highest quality standards.",
+        price: 29.95,
         image: "product-6.jpg",
         featured: true,
     },
     {
         id: 6,
         title: "Socks",
-        desription: "Socks",
-        price: 99.95,
+        description: "Socks. Sourced from our domestic factories to the highest quality standards.",
+        price: 19.95,
         image: "product-7.jpg",
         featured: false,
     },
     {
         id: 7,
         title: "Black Watch",
-        desription: "Black Watch",
-        price: 99.95,
+        description: "Black Watch. Sourced from our domestic factories to the highest quality standards.",
+        price: 119.95,
         image: "product-8.jpg",
         featured: true,
     },
@@ -111,7 +115,7 @@ const brands = [
 
 const exclusiveProd = {
     title: "Smart Band 9000",
-    desription:
+    description:
         "The Smart Band 9000 can... wait for it... TELL THE TIME! Get this bleeding edge piece of technology now. Be the envy of your friends",
     price: 32.95,
     image: "exclusive.png",
