@@ -37,6 +37,9 @@ export const Navigation = ({ web3connect }) => {
                         <li>
                             <Link to="/contLinkct">Contact</Link>
                         </li>
+                        <li>
+                            <Link to="/admin">Admin</Link>
+                        </li>
                     </ul>
                     <div className="nav-rh-icons">
                         <Link to="/cart" className="cart-white">

@@ -194,7 +194,8 @@ img {
 
 .featured-products,
 .latest-products,
-.all-products {
+.all-products,
+.admin-panel {
     background: $dark;
     color: $text;
 
@@ -262,6 +263,86 @@ img {
 .all-products {
     .all-prod-heading {
         margin-top: 5em;
+    }
+}
+
+.admin-panel {
+    .admin-panel-heading {
+        margin-top: 5em;
+    }
+
+    .editing-card {
+        background: rgba(200, 200, 200, 0.15);
+        padding: 1em;
+        border-radius: 0.5em;
+        display: grid;
+
+        .img-mngr {
+            padding-bottom: 0.7em;
+            text-align: center;
+
+            .img-box {
+                padding-bottom: 0.8em;
+            }
+
+            input {
+                display: none;
+            }
+
+            label {
+                display: inline-block;
+                color: $primary;
+                font-weight: bold;
+                border: solid $primary 3px;
+                background: $background-light;
+                border-radius: 0.5em;
+                padding: 0.3em 1em;
+                cursor: pointer;
+            }
+
+            .upload-progress {
+                background: $primary;
+                height: 4px;
+                margin-top: 1em;
+            }
+        }
+
+        .product-form {
+            label,
+            input {
+                display: block;
+            }
+
+            label {
+                margin: 0.8em 0 0.2em;
+            }
+
+            input,
+            textarea {
+                padding: 0.3em;
+                font-family: inherit;
+                font-size: 1em;
+                width: 100%;
+            }
+
+            button {
+                display: block;
+                margin: 2em auto 1em;
+                color: $primary;
+                font-size: 1.1em;
+                font-weight: bold;
+                border: solid $primary 3px;
+                background: $background-light;
+                border-radius: 0.5em;
+                padding: 0.3em 1em;
+
+                &:hover {
+                    color: white;
+                    background: $primary;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }
 

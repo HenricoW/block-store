@@ -23,10 +23,11 @@ import { ProductDetailPage } from "./pages/ProductDetailPage";
 // redux
 import { productsTemp, reviews, exclusiveProd } from "./dataTemp";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/actions/productsActions";
 import { setReviews } from "./redux/actions/reviewsActions";
 import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
+import { AdminPage } from "./pages/AdminPage";
 
 const providerOptions = {
     authereum: {
@@ -103,6 +104,7 @@ function App() {
                     <ProductsPage renderProductList={renderProductList} />
                 </Route>
                 <Route path="/products/:product_id" exact component={ProductDetailPage} />
+                <Route path="/admin" exact component={AdminPage} />
                 <Route component={Page404} />
             </Switch>
             <Footer />
