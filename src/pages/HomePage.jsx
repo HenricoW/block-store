@@ -55,7 +55,7 @@ export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, 
     const exclusiveProd = useSelector((state) => state.exclusiveProd);
 
     return (
-        <div>
+        <>
             <section className="hero-section">
                 <div className="container">
                     <div className="left-col">
@@ -99,6 +99,6 @@ export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, 
                 </div>
             </section>
             <BrandsList />
-        </div>
+        </>
     );
 };
