@@ -28,6 +28,10 @@ img {
   display: none;
 }
 
+.error {
+  color: orangered;
+}
+
 .btn-cta {
   text-decoration: none;
   color: #007af3;
@@ -354,10 +358,25 @@ img {
   cursor: pointer;
 }
 
+.admin-panel .editing-card .img-mngr .error {
+  margin-top: 0.7em;
+  padding: 0.5em 1em;
+  border: solid orangered 2px;
+  border-radius: 0.5em;
+}
+
 .admin-panel .editing-card .img-mngr .upload-progress {
   background: #007af3;
   height: 4px;
   margin-top: 1em;
+}
+
+.admin-panel .editing-card .img-mngr .upload-success {
+  margin-top: 0.7em;
+  padding: 0.5em 1em;
+  border: solid limegreen 2px;
+  border-radius: 0.5em;
+  color: limegreen;
 }
 
 .admin-panel .editing-card .product-form label,
