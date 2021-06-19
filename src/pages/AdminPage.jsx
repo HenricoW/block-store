@@ -1,13 +1,22 @@
-import React from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { ProgressBar } from "../components/ProgressBar";
 
 export const AdminPage = () => {
+    // component state
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
 
-    const allowedTypes = ["image/png", "image/jpeg"];
+    // DOM refs
+    const titleRef = useRef(null);
+    const descRef = useRef(null);
+    const priceRef = useRef(null);
 
+    // redux
+    const adminState = useSelector((state) => state.adminPanel);
+
+    // event handlers
+    const allowedTypes = ["image/png", "image/jpeg"];
     const handleUpload = (e) => {
         const uploadedFile = e.target.files[0];
         if (uploadedFile && allowedTypes.includes(uploadedFile.type)) {
@@ -21,6 +30,13 @@ export const AdminPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const title = titleRef.current.value;
+        const desc = descRef.current.value;
+        const price = parseFloat(priceRef.current.value);
+
+        const productData = { title, desc, price, url: adminState.imageUrl };
+
+        console.log(productData);
     };
 
     return (
@@ -46,11 +62,11 @@ export const AdminPage = () => {
                     <form onSubmit={handleSubmit} className="product-form">
                         <h3>Add/Edit Product Info</h3>
                         <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id="title" />
+                        <input type="text" name="title" id="title" ref={titleRef} />
                         <label htmlFor="description">Description</label>
-                        <textarea name="description" id="description" rows={4}></textarea>
+                        <textarea name="description" id="description" rows={4} ref={descRef}></textarea>
                         <label htmlFor="price">Price (USD)</label>
-                        <input type="number" name="price" id="price" min={0} step={0.01} />
+                        <input type="number" name="price" id="price" min={0} step={0.01} ref={priceRef} />
                         <button className="submit-btn">Submit</button>
                     </form>
                 </div>

@@ -20,4 +20,8 @@ const exclusiveProductActions = {
     CLEAR_EXCLUSIVE_PRODUCT: "CLEAR_EXCLUSIVE_PRODUCT",
 };
 
-export { productActionTypes, currentProductActions, reviewsActions, exclusiveProductActions };
+const adminPanelActions = {
+    SET_IMAGE_URL: "SET_IMAGE_URL",
+};
+
+export { productActionTypes, currentProductActions, reviewsActions, exclusiveProductActions, adminPanelActions };
