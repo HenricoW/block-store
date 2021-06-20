@@ -6,6 +6,7 @@ import { selectProduct } from "../redux/actions/currentProductActions";
 export const ProductDetailPage = ({ onBuy }) => {
     useEffect(() => {
         window.scroll(0, 0);
+        qty.current.value = 1;
     }, []);
 
     const { product_id } = useParams();

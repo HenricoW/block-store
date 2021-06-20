@@ -9,8 +9,12 @@ export const Navigation = ({ web3connect }) => {
 
     const navRef = useRef(null);
 
-    const toggleHide = () => {
-        navRef.current.classList.toggle("hidden-sm");
+    const showMobileMenu = () => {
+        navRef.current.classList.remove("hidden-sm");
+    };
+
+    const hideMobileMenu = () => {
+        navRef.current.classList.add("hidden-sm");
     };
 
     return (
@@ -19,13 +23,18 @@ export const Navigation = ({ web3connect }) => {
                 <Link to="/" className="logo">
                     <span>Web3</span> Store
                 </Link>
-                <img src="/images/menu.svg" alt="open mobile menu" className="menu-open" onClick={() => toggleHide()} />
+                <img
+                    src="/images/menu.svg"
+                    alt="open mobile menu"
+                    className="menu-open"
+                    onClick={() => showMobileMenu()}
+                />
                 <nav className="menu hidden-sm" ref={navRef}>
                     <img
                         src="/images/exit.svg"
                         alt="close mobile menu"
                         className="menu-close"
-                        onClick={() => toggleHide()}
+                        onClick={() => hideMobileMenu()}
                     />
                     <ul>
                         <li>

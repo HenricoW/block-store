@@ -642,10 +642,6 @@ footer {
 }
 
 @media only screen and (min-width: 700px) {
-    // .hidden-sm {
-    //     display: block;
-    // }
-
     .container {
         margin: 0 12%;
     }
@@ -671,9 +667,6 @@ footer {
             margin-top: 2.5em;
         }
     }
-
-    // .latest-products .container .grid-latest {
-    // }
 
     footer .container .grid-footer {
         padding: 0 2em;
@@ -777,6 +770,10 @@ footer {
             flex-direction: column;
             justify-content: space-between;
         }
+    }
+
+    .hidden-sm {
+        display: block;
     }
 }
 

@@ -39,7 +39,7 @@ export const HomePage = ({ onBuy, renderProductList }) => {
             <section className="featured-products">
                 <div className="container">
                     <h2>Featured Products</h2>
-                    <div className="grid-featured">{renderProductList(products, 2, 2, 3)}</div>
+                    <div className="grid-featured">{renderProductList(products, 2, 3, 4)}</div>
                 </div>
             </section>
             <section className="exclusive-product">

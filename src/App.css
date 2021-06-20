@@ -834,6 +834,9 @@ footer .container .copyright::before {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
+  .hidden-sm {
+    display: block;
+  }
 }
 
 @media only screen and (min-width: 1150px) {
