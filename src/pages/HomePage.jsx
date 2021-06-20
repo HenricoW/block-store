@@ -16,39 +16,7 @@ const renderTestimonials = (reviews) => {
     ));
 };
 
-const handleMMError = (err) => {
-    if (err.message.includes("User denied transaction")) {
-        // notify user with modal
-        alert("You rejected the transaction"); // change to modal
-    }
-    console.log(err.message);
-};
-
-export const HomePage = ({ web3, mUSDcontr, w3ShopContr, accounts, web3connect, renderProductList }) => {
-    const onBuy = async (price) => {
-        if (web3 === undefined || mUSDcontr === undefined || w3ShopContr === undefined) {
-            web3connect();
-            return;
-        }
-
-        const amount = web3.utils.toWei(price.toString());
-        const currAcc = accounts[0];
-
-        await mUSDcontr.methods
-            .approve(w3ShopContr.options.address, amount)
-            .send({ from: currAcc })
-            .catch((err) => {
-                handleMMError(err);
-            });
-
-        await w3ShopContr.methods
-            .purchase(amount, currAcc)
-            .send({ from: currAcc })
-            .catch((err) => {
-                handleMMError(err);
-            });
-    };
-
+export const HomePage = ({ onBuy, renderProductList }) => {
     // redux
     const products = useSelector((state) => state.allProducts.products);
     const reviews = useSelector((state) => state.allReviews);

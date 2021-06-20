@@ -9,7 +9,7 @@ export const ProgressBar = ({ file }) => {
 
     // redux
     const dispatch = useDispatch();
-    // have to add slight delay so this component and it parent are not
+    // added delay so this component and it parent are not
     // updated at the same time, triggering each other
     url && setTimeout(() => dispatch(setImageUrl(url)), 50);
 

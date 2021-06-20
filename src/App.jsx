@@ -86,24 +86,51 @@ function App() {
         ));
     };
 
+    const handleMMError = (err) => {
+        if (err.message.includes("User denied transaction")) {
+            // notify user with modal
+            alert("You rejected the transaction"); // change to modal
+        }
+        console.log(err.message);
+    };
+
+    const onBuy = async (price) => {
+        if (web3 === undefined || mUSDcontr === undefined || w3ShopContr === undefined) {
+            web3connect();
+            return;
+        }
+
+        const amount = web3.utils.toWei(price.toString());
+        const currAcc = accounts[0];
+
+        await mUSDcontr.methods
+            .approve(w3ShopContr.options.address, amount)
+            .send({ from: currAcc })
+            .catch((err) => {
+                handleMMError(err);
+            });
+
+        await w3ShopContr.methods
+            .purchase(amount, currAcc)
+            .send({ from: currAcc })
+            .catch((err) => {
+                handleMMError(err);
+            });
+    };
+
     return (
         <BrowserRouter>
             <Navigation web3connect={web3connect} />
             <Switch>
                 <Route path="/" exact>
-                    <HomePage
-                        web3={web3}
-                        mUSDcontr={mUSDcontr}
-                        w3ShopContr={w3ShopContr}
-                        accounts={accounts}
-                        web3connect={web3connect}
-                        renderProductList={renderProductList}
-                    />
+                    <HomePage onBuy={onBuy} renderProductList={renderProductList} />
                 </Route>
                 <Route path="/products" exact>
                     <ProductsPage renderProductList={renderProductList} />
                 </Route>
-                <Route path="/products/:product_id" exact component={ProductDetailPage} />
+                <Route path="/products/:product_id" exact>
+                    <ProductDetailPage onBuy={onBuy} />
+                </Route>
                 <Route path="/admin" exact component={AdminPage} />
                 <Route component={Page404} />
             </Switch>

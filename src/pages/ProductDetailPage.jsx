@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProduct } from "../redux/actions/currentProductActions";
 
-export const ProductDetailPage = () => {
+export const ProductDetailPage = ({ onBuy }) => {
     useEffect(() => {
         window.scroll(0, 0);
     }, []);
@@ -15,8 +15,12 @@ export const ProductDetailPage = () => {
     dispatch(selectProduct(Number(product_id)));
     const product = useSelector((state) => state.allProducts.currentItem);
 
+    // refs
+    const qty = useRef(null);
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        onBuy(qty.current.value * product.price);
     };
 
     return (
@@ -25,14 +29,13 @@ export const ProductDetailPage = () => {
                 <div className="detail-grid">
                     <div className="product-image">
                         <img src={`/images/${product.image}`} alt={product.title} />
-                        {/* <p>{product.description}</p> */}
                     </div>
                     <div className="product-text">
                         <h2>{product.title}</h2>
                         <h3>$ {product.price}</h3>
                         <p>{product.description}</p>
                         <form onSubmit={handleSubmit}>
-                            <input type="number" name="qty" id="qty" min={1} max={10} />
+                            <input type="number" name="qty" id="qty" ref={qty} min={1} max={10} />
                             <button>Buy Now</button>
                         </form>
                     </div>
