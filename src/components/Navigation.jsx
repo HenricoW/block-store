@@ -8,13 +8,16 @@ export const Navigation = ({ web3connect }) => {
     };
 
     const navRef = useRef(null);
+    const bgBlurRef = useRef(null);
 
     const showMobileMenu = () => {
         navRef.current.classList.remove("hidden-sm");
+        bgBlurRef.current.classList.remove("hidden");
     };
 
     const hideMobileMenu = () => {
         navRef.current.classList.add("hidden-sm");
+        bgBlurRef.current.classList.add("hidden");
     };
 
     return (
@@ -29,6 +32,7 @@ export const Navigation = ({ web3connect }) => {
                     className="menu-open"
                     onClick={() => showMobileMenu()}
                 />
+                <div className="page-blur hidden" ref={bgBlurRef} onClick={() => hideMobileMenu()}></div>
                 <nav className="menu hidden-sm" ref={navRef}>
                     <img
                         src="/images/exit.svg"
@@ -36,7 +40,7 @@ export const Navigation = ({ web3connect }) => {
                         className="menu-close"
                         onClick={() => hideMobileMenu()}
                     />
-                    <ul>
+                    <ul onClick={() => hideMobileMenu()}>
                         <li>
                             <Link to="/products">Products</Link>
                         </li>
@@ -50,7 +54,7 @@ export const Navigation = ({ web3connect }) => {
                             <Link to="/admin">Admin</Link>
                         </li>
                     </ul>
-                    <div className="nav-rh-icons">
+                    <div className="nav-rh-icons" onClick={() => hideMobileMenu()}>
                         <Link to="/cart" className="cart-white">
                             <img src="/images/shopping-cart-white.svg" alt="your account" />
                         </Link>
