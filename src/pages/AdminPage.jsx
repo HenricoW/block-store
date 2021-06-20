@@ -39,6 +39,8 @@ export const AdminPage = () => {
         console.log(productData);
     };
 
+    let imgUrl = "images/placeholder.svg";
+
     return (
         <section className="admin-panel">
             <div className="container">
@@ -46,7 +48,7 @@ export const AdminPage = () => {
                 <div className="editing-card">
                     <div className="img-mngr">
                         <div className="img-box">
-                            <img src="images/product-12.jpg" alt="uploaded product" />
+                            <img src={adminState.imageUrl ? adminState.imageUrl : imgUrl} alt="uploaded product" />
                         </div>
                         <label htmlFor="file-input">Add an image</label>
                         <input
