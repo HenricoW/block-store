@@ -24,6 +24,8 @@ contract ShopToken is ERC20 {
         _;
     }
 
+    event ShopTokenSupply(string message);
+
     constructor (address shopAddr) ERC20("STKN", "Shop Token") {
         owner = msg.sender;
         shopContr = Web3Shop(shopAddr);
@@ -34,8 +36,16 @@ contract ShopToken is ERC20 {
         shopContr = Web3Shop(shopAddress);
     }
 
+    function getShopAddress() external view returns(address) {
+        return address(shopContr);
+    }
+
     function reward(address receiver, uint amount) external onlyShop() {
-        require(totalSupply() <= maxSupply, "Mint: Max Shop token supply has been reached");
+        // require(totalSupply() + amount <= maxSupply, "Mint: Near or at max Shop token supply");
+        if(totalSupply() + amount > maxSupply) {
+            emit ShopTokenSupply("Near or at max Shop token supply");
+            return;
+        }
         _mint(receiver, amount);
     }
 

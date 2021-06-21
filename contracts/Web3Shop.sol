@@ -30,23 +30,23 @@ contract Web3Shop {
         shopToken = ShopToken(shopTknAddress);
     }
 
-    function purchase(uint amount, address customer) external {         // add reentrancy guard
-        paymentToken.transferFrom(customer, address(this), amount);
-        emit paymentMade(customer, amount);
+    function purchase(uint amount) external {         // add reentrancy guard
+        paymentToken.transferFrom(msg.sender, address(this), amount);
+        emit paymentMade(msg.sender, amount);
         accruedSpend[msg.sender] += amount;
 
         // product release
 
         // send reward token
-        if(address(shopToken) != address(0)) shopToken.reward(customer, (amount / rewardRatio));
+        if(address(shopToken) != address(0)) shopToken.reward(msg.sender, (amount / rewardRatio));
     }
 
     function refund(address recipient, uint amount, bool mustBurn) external onlyAdmin() {    // add reentrancy guard
         require(accruedSpend[recipient] >= amount, "Refund: Refund request > cumulative spend");
-        if( (address(shopToken) != address(0)) && mustBurn ) shopToken.burn(recipient, amount);
+        if( (address(shopToken) != address(0)) && mustBurn ) shopToken.burn(recipient, amount / rewardRatio);
 
         // verify product return
 
-        paymentToken.transfer(recipient, amount / rewardRatio);
+        paymentToken.transfer(recipient, amount);
     }
 }

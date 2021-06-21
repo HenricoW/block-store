@@ -111,7 +111,7 @@ function App() {
             });
 
         await w3ShopContr.methods
-            .purchase(amount, currAcc)
+            .purchase(amount)
             .send({ from: currAcc })
             .catch((err) => {
                 handleMMError(err);
