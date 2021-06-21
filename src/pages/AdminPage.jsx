@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { ProgressBar } from "../components/ProgressBar";
+import { fbFireStore, timestamp } from "../firebase/config";
 
 export const AdminPage = () => {
     // component state
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
+    const [submitted, setSubmitted] = useState(false);
 
     // DOM refs
     const titleRef = useRef(null);
@@ -15,10 +17,14 @@ export const AdminPage = () => {
     // redux
     const adminState = useSelector((state) => state.adminPanel);
 
-    // event handlers
+    // firestore
+    const dbRef = fbFireStore.collection("products");
+
+    // handle image upload
     const allowedTypes = ["image/png", "image/jpeg"];
     const handleUpload = (e) => {
         const uploadedFile = e.target.files[0];
+        setSubmitted(false); // remove "Data capture success" message
         if (uploadedFile && allowedTypes.includes(uploadedFile.type)) {
             setError(null);
             setFile(uploadedFile);
@@ -28,15 +34,30 @@ export const AdminPage = () => {
         }
     };
 
+    // handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmitted(true);
         const title = titleRef.current.value;
         const desc = descRef.current.value;
         const price = parseFloat(priceRef.current.value);
 
-        const productData = { title, desc, price, url: adminState.imageUrl };
-
-        console.log(productData);
+        const productData = { title, desc, price, url: adminState.imageUrl, featured: false, createdAt: timestamp() };
+        dbRef
+            .add(productData)
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+                setError("Error adding document");
+                setSubmitted(false);
+            })
+            .then(async (docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+                // clear fields
+                titleRef.current.value = "";
+                descRef.current.value = "";
+                priceRef.current.value = "";
+                setFile(null);
+            });
     };
 
     let imgUrl = "images/placeholder.svg";
@@ -59,7 +80,8 @@ export const AdminPage = () => {
                             id="file-input"
                         />
                         {error && <div className="error">{error}</div>}
-                        {file && <ProgressBar file={file} />}
+                        {submitted && <div className="upload-success">Data capture success</div>}
+                        {file && <ProgressBar file={file} submitted={submitted} />}
                     </div>
                     <form onSubmit={handleSubmit} className="product-form">
                         <h3>Add/Edit Product Info</h3>
