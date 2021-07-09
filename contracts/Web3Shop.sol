@@ -3,9 +3,10 @@
 pragma solidity ^0.8.3;
 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 import './ShopToken.sol';
 
-contract Web3Shop {
+contract Web3Shop is ReentrancyGuard {
 
     IERC20 public paymentToken;
     ShopToken public shopToken;
@@ -30,7 +31,7 @@ contract Web3Shop {
         shopToken = ShopToken(shopTknAddress);
     }
 
-    function purchase(uint amount) external {         // add reentrancy guard
+    function purchase(uint amount) external nonReentrant() {         // add reentrancy guard
         paymentToken.transferFrom(msg.sender, address(this), amount);
         emit paymentMade(msg.sender, amount);
         accruedSpend[msg.sender] += amount;
