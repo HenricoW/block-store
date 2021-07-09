@@ -177,6 +177,7 @@ img {
 
 .hero-section {
     margin-top: $nav-height;
+    background-image: linear-gradient(-25deg, $primary-light 20%, $primary);
 
     .container {
         padding: 5em 0 10em 0;
@@ -285,16 +286,22 @@ img {
 
     .editing-card {
         background: rgba(200, 200, 200, 0.15);
-        padding: 1em;
+        padding: 1.1em 1em;
         border-radius: 0.5em;
         display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 0.5em;
 
         .img-mngr {
-            padding-bottom: 0.7em;
+            padding-bottom: 0.5em;
             text-align: center;
 
             .img-box {
                 padding-bottom: 0.8em;
+
+                img {
+                    max-width: 450px;
+                }
             }
 
             input {
@@ -305,6 +312,7 @@ img {
                 display: inline-block;
                 color: $primary;
                 font-weight: bold;
+                font-size: 1.3em;
                 border: solid $primary 3px;
                 background: $background-light;
                 border-radius: 0.5em;
@@ -356,14 +364,15 @@ img {
                 display: block;
                 margin: 2em auto 1em;
                 color: $primary;
-                font-size: 1.1em;
+                font-size: 1.5em;
                 font-weight: bold;
                 border: solid $primary 3px;
                 background: $background-light;
                 border-radius: 0.5em;
                 padding: 0.3em 1em;
 
-                &:hover {
+                &:hover,
+                &:focus {
                     color: white;
                     background: $primary;
                     cursor: pointer;
@@ -446,7 +455,8 @@ img {
 }
 
 .exclusive-product {
-    background: $primary-light;
+    // background: $primary-light;
+    background-image: linear-gradient(45deg, $primary-light, $primary);
 
     .container {
         padding: 4em 0;
@@ -468,7 +478,7 @@ img {
             text-align: center;
 
             h1 {
-                color: $primary;
+                // color: $primary;
                 font-size: 2em;
             }
         }
@@ -667,6 +677,10 @@ footer {
         a {
             margin-top: 2.5em;
         }
+    }
+
+    .admin-panel .product-form {
+        padding: 0 1.5em;
     }
 
     footer .container .grid-footer {

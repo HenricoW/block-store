@@ -169,6 +169,7 @@ img {
 
 .hero-section {
   margin-top: 69px;
+  background-image: linear-gradient(-25deg, lightblue 20%, #007af3);
 }
 
 .hero-section .container {
@@ -338,19 +339,26 @@ img {
 
 .admin-panel .editing-card {
   background: rgba(200, 200, 200, 0.15);
-  padding: 1em;
+  padding: 1.1em 1em;
   border-radius: 0.5em;
   display: -ms-grid;
   display: grid;
+  -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 0.5em;
 }
 
 .admin-panel .editing-card .img-mngr {
-  padding-bottom: 0.7em;
+  padding-bottom: 0.5em;
   text-align: center;
 }
 
 .admin-panel .editing-card .img-mngr .img-box {
   padding-bottom: 0.8em;
+}
+
+.admin-panel .editing-card .img-mngr .img-box img {
+  max-width: 450px;
 }
 
 .admin-panel .editing-card .img-mngr input {
@@ -361,6 +369,7 @@ img {
   display: inline-block;
   color: #007af3;
   font-weight: bold;
+  font-size: 1.3em;
   border: solid #007af3 3px;
   background: #ececec;
   border-radius: 0.5em;
@@ -410,7 +419,7 @@ img {
   display: block;
   margin: 2em auto 1em;
   color: #007af3;
-  font-size: 1.1em;
+  font-size: 1.5em;
   font-weight: bold;
   border: solid #007af3 3px;
   background: #ececec;
@@ -418,7 +427,7 @@ img {
   padding: 0.3em 1em;
 }
 
-.admin-panel .editing-card .product-form button:hover {
+.admin-panel .editing-card .product-form button:hover, .admin-panel .editing-card .product-form button:focus {
   color: white;
   background: #007af3;
   cursor: pointer;
@@ -504,7 +513,7 @@ img {
 }
 
 .exclusive-product {
-  background: lightblue;
+  background-image: linear-gradient(45deg, lightblue, #007af3);
 }
 
 .exclusive-product .container {
@@ -536,7 +545,6 @@ img {
 }
 
 .exclusive-product .container .right-col h1 {
-  color: #007af3;
   font-size: 2em;
 }
 
@@ -735,6 +743,9 @@ footer .container .copyright::before {
   }
   .hero-section .container .left-col a {
     margin-top: 2.5em;
+  }
+  .admin-panel .product-form {
+    padding: 0 1.5em;
   }
   footer .container .grid-footer {
     padding: 0 2em;
