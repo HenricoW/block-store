@@ -15,12 +15,12 @@ contract ShopToken is ERC20 {
     Web3Shop public shopContr;
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Unauthorized access");
+        require(msg.sender == owner, "ShopToken: Unauthorized access");
         _;
     }
 
     modifier onlyShop() {
-        require(msg.sender == address(shopContr), "Unauthorized access");
+        require(msg.sender == address(shopContr), "ShopToken: Only Shop contract allowed");
         _;
     }
 
@@ -43,14 +43,14 @@ contract ShopToken is ERC20 {
     function reward(address receiver, uint amount) external onlyShop() {
         // require(totalSupply() + amount <= maxSupply, "Mint: Near or at max Shop token supply");
         if(totalSupply() + amount > maxSupply) {
-            emit ShopTokenSupply("Near or at max Shop token supply");
+            emit ShopTokenSupply("ShopToken#reward: Near or at max Shop token supply");
             return;
         }
         _mint(receiver, amount);
     }
 
     function burn(address customer, uint amount) external onlyShop() {
-        require(balanceOf(customer) >= amount, "Burn: Burn amount exceeds customer balance");
+        require(balanceOf(customer) >= amount, "ShopToken#burn: Burn amount exceeds customer balance");
         _burn(customer, amount);
     }
 }

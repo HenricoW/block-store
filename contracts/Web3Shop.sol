@@ -16,7 +16,7 @@ contract Web3Shop is ReentrancyGuard {
     mapping(address => uint) public accruedSpend;
 
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Only admin allowed.");
+        require(msg.sender == admin, "Web3Shop: Only admin allowed.");
         _;
     }
 
@@ -32,22 +32,25 @@ contract Web3Shop is ReentrancyGuard {
     }
 
     function purchase(uint amount) external nonReentrant() {         // add reentrancy guard
-        paymentToken.transferFrom(msg.sender, address(this), amount);
-        emit paymentMade(msg.sender, amount);
-        accruedSpend[msg.sender] += amount;
+        bool success = paymentToken.transferFrom(msg.sender, address(this), amount);
+        if(success){
+            emit paymentMade(msg.sender, amount);
+            accruedSpend[msg.sender] += amount;
 
-        // product release
+            // product release
 
-        // send reward token
-        if(address(shopToken) != address(0)) shopToken.reward(msg.sender, (amount / rewardRatio));
+            // send reward token
+            if(address(shopToken) != address(0)) shopToken.reward(msg.sender, (amount / rewardRatio));
+        }
     }
 
-    function refund(address recipient, uint amount, bool mustBurn) external onlyAdmin() {    // add reentrancy guard
-        require(accruedSpend[recipient] >= amount, "Refund: Refund request > cumulative spend");
+    function refund(address recipient, uint amount, bool mustBurn) external onlyAdmin() nonReentrant() {    // add reentrancy guard
+        require(accruedSpend[recipient] >= amount, "Web3Shop#refund: Refund request > cumulative spend");
         if( (address(shopToken) != address(0)) && mustBurn ) shopToken.burn(recipient, amount / rewardRatio);
 
         // verify product return
 
-        paymentToken.transfer(recipient, amount);
+        bool success = paymentToken.transfer(recipient, amount);
+        require(success, "Web3Shop#refund: Refund transfer failed");
     }
 }
