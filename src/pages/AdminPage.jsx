@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { ProgressBar } from "../components/ProgressBar";
 import { fbFireStore, timestamp } from "../firebase/config";
 
-export const AdminPage = () => {
+export const AdminPage = ({ accounts, owner }) => {
     // component state
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
@@ -13,6 +14,17 @@ export const AdminPage = () => {
     const titleRef = useRef(null);
     const descRef = useRef(null);
     const priceRef = useRef(null);
+
+    const history = useHistory();
+
+    useEffect(() => {
+        console.log(accounts && accounts[0]);
+        const sessAcc = sessionStorage.getItem("connectedAcc");
+        console.log("Session account: ", sessAcc);
+        const theAcc = sessAcc || accounts[0];
+        if (!owner) history.push("/");
+        if (!theAcc || theAcc.toLowerCase() !== owner.toLowerCase()) history.push("/");
+    }, [accounts]);
 
     // redux
     const adminState = useSelector((state) => state.adminPanel);
@@ -37,6 +49,10 @@ export const AdminPage = () => {
     // handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!file) {
+            setError("Please upload a file");
+            return;
+        }
         setSubmitted(true);
         const title = titleRef.current.value;
         const desc = descRef.current.value;
@@ -86,11 +102,31 @@ export const AdminPage = () => {
                     <form onSubmit={handleSubmit} className="product-form">
                         <h3>Add/Edit Product Info</h3>
                         <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id="title" ref={titleRef} />
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            ref={titleRef}
+                            pattern="[a-zA-Z0-9\-_]+"
+                            required="required"
+                        />
                         <label htmlFor="description">Description</label>
-                        <textarea name="description" id="description" rows={4} ref={descRef}></textarea>
-                        <label htmlFor="price">Price (USD)</label>
-                        <input type="number" name="price" id="price" min={0} step={0.01} ref={priceRef} />
+                        <textarea
+                            name="description"
+                            id="description"
+                            rows={4}
+                            ref={descRef}
+                            required="required"
+                        ></textarea>
+                        <label htmlFor="price">Price (USD) [0.00 - 9999.99]</label>
+                        <input
+                            type="text"
+                            name="price"
+                            id="price"
+                            ref={priceRef}
+                            pattern="\d{1,4}\.\d{2}"
+                            required="required"
+                        />
                         <button className="submit-btn">Submit</button>
                     </form>
                 </div>
