@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-export const Navigation = ({ web3connect }) => {
+export const Navigation = ({ web3connect, accounts, owner }) => {
+    useEffect(() => {}, [accounts]);
+
     const walletConnect = (e) => {
         e.preventDefault();
         web3connect();
@@ -50,20 +52,22 @@ export const Navigation = ({ web3connect }) => {
                         <li>
                             <Link to="/contLinkct">Contact</Link>
                         </li>
-                        <li>
-                            <Link to="/admin">Admin</Link>
-                        </li>
+                        {accounts && owner && accounts[0].toLowerCase() === owner.toLowerCase() ? (
+                            <li>
+                                <Link to="/admin">Admin</Link>
+                            </li>
+                        ) : null}
                     </ul>
                     <div className="nav-rh-icons" onClick={() => hideMobileMenu()}>
-                        <Link to="/cart" className="cart-white">
+                        {/* <Link to="/cart" className="cart-white">
                             <img src="/images/shopping-cart-white.svg" alt="your account" />
-                        </Link>
+                        </Link> */}
                         <Link to="/" className="wallet-white" onClick={walletConnect}>
                             <img src="/images/wallet-white.svg" alt="your account" />
                         </Link>
-                        <Link to="/cart" className="cart-black">
+                        {/* <Link to="/cart" className="cart-black">
                             <img src="/images/shopping-cart-black.svg" alt="your account" />
-                        </Link>
+                        </Link> */}
                         <Link to="/" className="wallet-black" onClick={walletConnect}>
                             <img src="/images/wallet-black.svg" alt="your account" />
                         </Link>

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // 3rd party
@@ -19,6 +19,7 @@ import { HomePage } from "./pages/HomePage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { Page404 } from "./pages/Page404";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
+import { AdminPage } from "./pages/AdminPage";
 
 // redux
 import { productsTemp, reviews, exclusiveProd } from "./dataTemp";
@@ -27,7 +28,6 @@ import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/actions/productsActions";
 import { setReviews } from "./redux/actions/reviewsActions";
 import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
-import { AdminPage } from "./pages/AdminPage";
 
 const providerOptions = {
     authereum: {
@@ -39,30 +39,50 @@ const w3ShopAddr = "0xcD5A36bF9A26233887623318D0403F023476695d";
 
 const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
 
-let provider, currentAcc;
 function App() {
     // web3
     const [web3, setWeb3] = useState(undefined);
     const [mUSDcontr, setMusdContr] = useState(undefined);
     const [w3ShopContr, setW3ShopContr] = useState(undefined);
     const [accounts, setAccounts] = useState(undefined);
+    const [admin, setAdmin] = useState("");
 
+    let provider;
     const web3connect = async () => {
         provider = await web3Modal.connect();
         const WEB3 = new Web3(provider);
         const MUSDCONTR = new WEB3.eth.Contract(MockUSD.abi, mUSDaddr);
         const W3SCONTR = new WEB3.eth.Contract(Web3Shop.abi, w3ShopAddr);
         const ACCs = await WEB3.eth.getAccounts();
+        const ADMIN = await W3SCONTR.methods.admin();
 
         setWeb3(WEB3);
         setMusdContr(MUSDCONTR);
         setW3ShopContr(W3SCONTR);
         setAccounts(ACCs);
-        currentAcc = ACCs[0];
-
-        console.log("all accounts: ", ACCs);
-        console.log("current account: ", currentAcc);
+        setAdmin(ADMIN);
     };
+
+    // MM account change
+    window.ethereum.on("accountsChanged", (accs) => setAccounts(accs));
+
+    useEffect(() => {
+        const init = async () => {
+            if (window.ethereum) {
+                await web3connect();
+            }
+        };
+
+        init();
+    }, []);
+
+    useEffect(() => {
+        if (accounts) {
+            console.log("Saving current account in Session.");
+            sessionStorage.setItem("connectedAcc", accounts[0]);
+            console.log(accounts[0]);
+        }
+    }, [accounts]);
 
     // redux
     const dispatch = useDispatch();
@@ -88,7 +108,6 @@ function App() {
 
     const handleMMError = (err) => {
         if (err.message.includes("User denied transaction")) {
-            // notify user with modal
             alert("You rejected the transaction"); // change to modal
         }
         console.log(err.message);
@@ -120,7 +139,7 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Navigation web3connect={web3connect} />
+            <Navigation web3connect={web3connect} accounts={accounts} owner={admin} />
             <Switch>
                 <Route path="/" exact>
                     <HomePage onBuy={onBuy} renderProductList={renderProductList} />
@@ -131,7 +150,9 @@ function App() {
                 <Route path="/products/:product_id" exact>
                     <ProductDetailPage onBuy={onBuy} />
                 </Route>
-                <Route path="/admin" exact component={AdminPage} />
+                <Route path="/admin" exact>
+                    <AdminPage accounts={accounts} owner={admin} />
+                </Route>
                 <Route component={Page404} />
             </Switch>
             <Footer />
