@@ -401,6 +401,17 @@ img {
 .admin-panel .editing-card .product-form label,
 .admin-panel .editing-card .product-form input {
   display: block;
+  border-radius: 5px;
+}
+
+.admin-panel .editing-card .product-form label #price:valid,
+.admin-panel .editing-card .product-form input #price:valid {
+  color: limegreen;
+}
+
+.admin-panel .editing-card .product-form label #price:invalid,
+.admin-panel .editing-card .product-form input #price:invalid {
+  color: orangered;
 }
 
 .admin-panel .editing-card .product-form label {
@@ -413,6 +424,7 @@ img {
   font-family: inherit;
   font-size: 1em;
   width: 100%;
+  border-radius: 5px;
 }
 
 .admin-panel .editing-card .product-form button {

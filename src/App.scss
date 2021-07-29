@@ -346,6 +346,15 @@ img {
             label,
             input {
                 display: block;
+                border-radius: 5px;
+
+                #price:valid {
+                    color: $success;
+                }
+
+                #price:invalid {
+                    color: $error;
+                }
             }
 
             label {
@@ -358,6 +367,7 @@ img {
                 font-family: inherit;
                 font-size: 1em;
                 width: 100%;
+                border-radius: 5px;
             }
 
             button {
