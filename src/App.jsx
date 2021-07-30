@@ -64,7 +64,7 @@ function App() {
     };
 
     // MM account change
-    window.ethereum.on("accountsChanged", (accs) => setAccounts(accs));
+    if (window.ethereum) window.ethereum.on("accountsChanged", (accs) => setAccounts(accs));
 
     useEffect(() => {
         const init = async () => {
