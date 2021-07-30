@@ -9,6 +9,7 @@ export const AdminPage = ({ accounts, owner }) => {
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
     const [submitted, setSubmitted] = useState(false);
+    const [currAcc, setCurrAcc] = useState(undefined);
 
     // DOM refs
     const titleRef = useRef(null);
@@ -18,10 +19,9 @@ export const AdminPage = ({ accounts, owner }) => {
     const history = useHistory();
 
     useEffect(() => {
-        console.log(accounts && accounts[0]);
         const sessAcc = sessionStorage.getItem("connectedAcc");
-        console.log("Session account: ", sessAcc);
-        const theAcc = sessAcc || accounts[0];
+        const theAcc = accounts[0] || sessAcc;
+        setCurrAcc(theAcc);
         if (!owner) history.push("/");
         if (!theAcc || theAcc.toLowerCase() !== owner.toLowerCase()) history.push("/");
     }, [accounts]);
@@ -81,7 +81,7 @@ export const AdminPage = ({ accounts, owner }) => {
     return (
         <section className="admin-panel">
             <div className="container">
-                <h2 className="admin-panel-heading">Admin Panel</h2>
+                <h2 className="admin-panel-heading">Admin Panel - your address: {currAcc}</h2>
                 <div className="editing-card">
                     <div className="img-mngr">
                         <div className="img-box">

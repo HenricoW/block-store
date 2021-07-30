@@ -52,7 +52,7 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
                         <li>
                             <Link to="/contLinkct">Contact</Link>
                         </li>
-                        {accounts && owner && accounts[0].toLowerCase() === owner.toLowerCase() ? (
+                        {accounts && owner.length > 1 && accounts[0].toLowerCase() === owner.toLowerCase() ? (
                             <li>
                                 <Link to="/admin">Admin</Link>
                             </li>

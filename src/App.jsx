@@ -54,7 +54,7 @@ function App() {
         const MUSDCONTR = new WEB3.eth.Contract(MockUSD.abi, mUSDaddr);
         const W3SCONTR = new WEB3.eth.Contract(Web3Shop.abi, w3ShopAddr);
         const ACCs = await WEB3.eth.getAccounts();
-        const ADMIN = await W3SCONTR.methods.admin();
+        const ADMIN = await W3SCONTR.methods.admin().call();
 
         setWeb3(WEB3);
         setMusdContr(MUSDCONTR);
