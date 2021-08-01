@@ -1,6 +1,8 @@
 import Web3Modal from "web3modal";
 import Web3 from "web3";
 import Authereum from "authereum";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Torus from "@toruslabs/torus-embed";
 
 import MockUSD from "../contracts/MockUSD.json";
 import Web3Shop from "../contracts/Web3Shop.json";
@@ -9,11 +11,26 @@ const providerOptions = {
     authereum: {
         package: Authereum,
     },
+    walletconnect: {
+        package: WalletConnectProvider,
+        options: {
+            infuraId: "3cfcdcbe076749d281f6df6c84b7b86a",
+        },
+    },
+    torus: {
+        package: Torus,
+    },
 };
 
 const getWeb3 = async () => {
     const web3Modal = new Web3Modal({ cacheProvider: false, providerOptions });
-    const provider = await web3Modal.connect();
+    let provider;
+    try {
+        provider = await web3Modal.connect();
+    } catch (err) {
+        throw new Error(err);
+    }
+    console.log(provider);
     const web3 = new Web3(provider);
 
     return [web3, provider];

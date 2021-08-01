@@ -27,48 +27,39 @@ import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
 function App() {
     // web3
     const [web3, setWeb3] = useState(undefined);
+    const [provider, setProvider] = useState(undefined);
     const [contracts, setContracts] = useState({ storeContr: undefined, mUSDcontr: undefined });
     const [accounts, setAccounts] = useState(undefined);
     const [admin, setAdmin] = useState("");
 
-    let _web3, mUSDcontr, storeContr, adminAddr, provider;
     const web3connect = async () => {
-        // move error handling to function, look at range of errors and handle accordingly
+        let _web3, _provider;
         try {
-            [_web3, provider] = await getWeb3();
+            [_web3, _provider] = await getWeb3();
             setWeb3(_web3);
-        } catch (error) {
-            console.log(error);
-            return;
-        }
-
-        // move error handling to function, look at range of errors and handle accordingly
-        [mUSDcontr, storeContr] = await getContracts(_web3);
-        const userAccounts = await _web3.eth.getAccounts();
-        try {
-            adminAddr = await storeContr.methods.admin().call();
+            setProvider(_provider);
         } catch (err) {
-            console.log("get admin error:");
-            console.log(err);
+            console.log(err.message);
+            if (err.message === "Modal closed by user") return;
         }
 
-        // setWeb3(_web3);
-        // setMusdContr(mUSDcontr);
-        // setW3ShopContr(storeContr);
-        setAccounts(userAccounts);
+        const [mUSDcontr, storeContr] = await getContracts(_web3);
         setContracts({ storeContr, mUSDcontr });
+        const userAccounts = await _web3.eth.getAccounts();
+        setAccounts(userAccounts);
+        const adminAddr = await storeContr.methods.admin().call();
         setAdmin(adminAddr);
     };
 
-    if (window.ethereum) window.ethereum.on("accountsChanged", (accs) => setAccounts(accs));
+    // useEffect(() => {
+    //     const init = async () => {
+    //         // await web3connect();
+    //     };
 
-    useEffect(() => {
-        const init = async () => {
-            if (window.ethereum) await web3connect();
-        };
+    //     init();
+    // }, []);
 
-        init();
-    }, []);
+    if (provider) provider.on("accountsChanged", (accs) => setAccounts(accs));
 
     useEffect(() => {
         if (accounts) {
@@ -108,7 +99,6 @@ function App() {
 
     const onBuy = async (price) => {
         if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
-            console.log("onBuy cannot proceed");
             web3connect();
             return;
         }
@@ -116,12 +106,18 @@ function App() {
         const amount = web3.utils.toWei(price.toString());
         const currAcc = accounts[0];
 
-        await contracts.mUSDcontr.methods
-            .approve(contracts.storeContr.options.address, amount)
-            .send({ from: currAcc })
-            .catch((err) => {
-                handleMMError(err);
-            });
+        try {
+            await contracts.mUSDcontr.methods
+                .approve(contracts.storeContr.options.address, amount)
+                .send({ from: currAcc })
+                .catch((err) => {
+                    handleMMError(err);
+                    throw new Error("Approval failed");
+                });
+        } catch (err) {
+            console.log(err);
+            return;
+        }
 
         await contracts.storeContr.methods
             .purchase(amount)
