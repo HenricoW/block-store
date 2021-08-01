@@ -12,6 +12,8 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
     const navRef = useRef(null);
     const bgBlurRef = useRef(null);
 
+    const shortAddress = (addr) => addr.slice(0, 6) + "..." + addr.slice(-4);
+
     const showMobileMenu = () => {
         navRef.current.classList.remove("hidden-sm");
         bgBlurRef.current.classList.remove("hidden");
@@ -43,6 +45,7 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
                         onClick={() => hideMobileMenu()}
                     />
                     <ul onClick={() => hideMobileMenu()}>
+                        <li>{accounts ? shortAddress(accounts[0]) : "Please connect"}</li>
                         <li>
                             <Link to="/products">Products</Link>
                         </li>
