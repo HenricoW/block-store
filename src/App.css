@@ -162,7 +162,16 @@ img {
   background: #444;
 }
 
-.navigation .container nav .nav-rh-icons .wallet-white > img {
+.navigation .container nav .nav-rh-icons .menu-icon-group {
+  text-align: center;
+}
+
+.navigation .container nav .nav-rh-icons .menu-icon-group .wallet-white {
+  text-decoration: none;
+  color: white;
+}
+
+.navigation .container nav .nav-rh-icons .menu-icon-group .wallet-white img {
   padding: 0.8em 1.2em;
   margin-top: 0.3em;
 }
@@ -825,7 +834,18 @@ footer .container .copyright::before {
   }
   .navigation .container nav .nav-rh-icons .cart-black,
   .navigation .container nav .nav-rh-icons .wallet-black {
-    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-decoration: none;
+  }
+  .navigation .container nav .nav-rh-icons .cart-black .addrString,
+  .navigation .container nav .nav-rh-icons .wallet-black .addrString {
+    margin: 0 0 0 20px;
+    color: #282c34;
   }
   .navigation .container nav .nav-rh-icons .cart-white,
   .navigation .container nav .nav-rh-icons .wallet-white {

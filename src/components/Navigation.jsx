@@ -24,6 +24,8 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
         bgBlurRef.current.classList.add("hidden");
     };
 
+    const addressStr = accounts ? shortAddress(accounts[0]) : "Please connect";
+
     return (
         <div className="navigation">
             <div className="container">
@@ -45,34 +47,38 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
                         onClick={() => hideMobileMenu()}
                     />
                     <ul onClick={() => hideMobileMenu()}>
-                        <li>{accounts ? shortAddress(accounts[0]) : "Please connect"}</li>
                         <li>
                             <Link to="/products">Products</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/about">About</Link>
-                        </li>
-                        <li>
+                            </li>
+                            <li>
                             <Link to="/contLinkct">Contact</Link>
-                        </li>
+                        </li> */}
                         {accounts && owner.length > 1 && accounts[0].toLowerCase() === owner.toLowerCase() ? (
                             <li>
                                 <Link to="/admin">Admin</Link>
                             </li>
                         ) : null}
+                        <li className="menu-divider">{""}</li>
                     </ul>
                     <div className="nav-rh-icons" onClick={() => hideMobileMenu()}>
                         {/* <Link to="/cart" className="cart-white">
                             <img src="/images/shopping-cart-white.svg" alt="your account" />
                         </Link> */}
-                        <Link to="/" className="wallet-white" onClick={walletConnect}>
-                            <img src="/images/wallet-white.svg" alt="your account" />
-                        </Link>
+                        <div className="menu-icon-group">
+                            <Link to="/" className="wallet-white" onClick={walletConnect}>
+                                <img src="/images/wallet-white.svg" alt="your account" />
+                                <h4>{addressStr}</h4>
+                            </Link>
+                        </div>
                         {/* <Link to="/cart" className="cart-black">
                             <img src="/images/shopping-cart-black.svg" alt="your account" />
                         </Link> */}
                         <Link to="/" className="wallet-black" onClick={walletConnect}>
                             <img src="/images/wallet-black.svg" alt="your account" />
+                            <p className="addrString">{addressStr}</p>
                         </Link>
                     </div>
                 </nav>

@@ -166,9 +166,18 @@ img {
                     }
                 }
 
-                .wallet-white > img {
-                    padding: 0.8em 1.2em;
-                    margin-top: 0.3em;
+                .menu-icon-group {
+                    text-align: center;
+
+                    .wallet-white {
+                        text-decoration: none;
+                        color: white;
+
+                        img {
+                            padding: 0.8em 1.2em;
+                            margin-top: 0.3em;
+                        }
+                    }
                 }
             }
         }
@@ -749,7 +758,14 @@ footer {
 
                 .cart-black,
                 .wallet-black {
-                    display: block;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+
+                    .addrString {
+                        margin: 0 0 0 20px;
+                        color: $dark;
+                    }
                 }
 
                 .cart-white,
