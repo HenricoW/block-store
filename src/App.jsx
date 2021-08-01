@@ -3,12 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // 3rd party
-import Web3 from "web3";
-import Web3Modal from "web3modal";
-import Authereum from "authereum";
-
-import MockUSD from "./contracts/MockUSD.json";
-import Web3Shop from "./contracts/Web3Shop.json";
+import { getWeb3, getContracts } from "./utils/utils";
 
 // components & pages
 import { Footer } from "./components/Footer";
@@ -29,48 +24,47 @@ import { setProducts } from "./redux/actions/productsActions";
 import { setReviews } from "./redux/actions/reviewsActions";
 import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
 
-const providerOptions = {
-    authereum: {
-        package: Authereum,
-    },
-};
-const mUSDaddr = "0x07FEA0C6A2575a979c7BCA7147aB0aB95f62C876";
-const w3ShopAddr = "0xcD5A36bF9A26233887623318D0403F023476695d";
-
-const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
-
 function App() {
     // web3
     const [web3, setWeb3] = useState(undefined);
-    const [mUSDcontr, setMusdContr] = useState(undefined);
-    const [w3ShopContr, setW3ShopContr] = useState(undefined);
+    const [contracts, setContracts] = useState({ storeContr: undefined, mUSDcontr: undefined });
     const [accounts, setAccounts] = useState(undefined);
     const [admin, setAdmin] = useState("");
 
-    let provider;
+    let _web3, mUSDcontr, storeContr, adminAddr, provider;
     const web3connect = async () => {
-        provider = await web3Modal.connect();
-        const WEB3 = new Web3(provider);
-        const MUSDCONTR = new WEB3.eth.Contract(MockUSD.abi, mUSDaddr);
-        const W3SCONTR = new WEB3.eth.Contract(Web3Shop.abi, w3ShopAddr);
-        const ACCs = await WEB3.eth.getAccounts();
-        const ADMIN = await W3SCONTR.methods.admin().call();
+        // move error handling to function, look at range of errors and handle accordingly
+        try {
+            [_web3, provider] = await getWeb3();
+            setWeb3(_web3);
+        } catch (error) {
+            console.log(error);
+            return;
+        }
 
-        setWeb3(WEB3);
-        setMusdContr(MUSDCONTR);
-        setW3ShopContr(W3SCONTR);
-        setAccounts(ACCs);
-        setAdmin(ADMIN);
+        // move error handling to function, look at range of errors and handle accordingly
+        [mUSDcontr, storeContr] = await getContracts(_web3);
+        const userAccounts = await _web3.eth.getAccounts();
+        try {
+            adminAddr = await storeContr.methods.admin().call();
+        } catch (err) {
+            console.log("get admin error:");
+            console.log(err);
+        }
+
+        // setWeb3(_web3);
+        // setMusdContr(mUSDcontr);
+        // setW3ShopContr(storeContr);
+        setAccounts(userAccounts);
+        setContracts({ storeContr, mUSDcontr });
+        setAdmin(adminAddr);
     };
 
-    // MM account change
     if (window.ethereum) window.ethereum.on("accountsChanged", (accs) => setAccounts(accs));
 
     useEffect(() => {
         const init = async () => {
-            if (window.ethereum) {
-                await web3connect();
-            }
+            if (window.ethereum) await web3connect();
         };
 
         init();
@@ -80,7 +74,6 @@ function App() {
         if (accounts) {
             console.log("Saving current account in Session.");
             sessionStorage.setItem("connectedAcc", accounts[0]);
-            console.log(accounts[0]);
         }
     }, [accounts]);
 
@@ -114,7 +107,8 @@ function App() {
     };
 
     const onBuy = async (price) => {
-        if (web3 === undefined || mUSDcontr === undefined || w3ShopContr === undefined) {
+        if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
+            console.log("onBuy cannot proceed");
             web3connect();
             return;
         }
@@ -122,14 +116,14 @@ function App() {
         const amount = web3.utils.toWei(price.toString());
         const currAcc = accounts[0];
 
-        await mUSDcontr.methods
-            .approve(w3ShopContr.options.address, amount)
+        await contracts.mUSDcontr.methods
+            .approve(contracts.storeContr.options.address, amount)
             .send({ from: currAcc })
             .catch((err) => {
                 handleMMError(err);
             });
 
-        await w3ShopContr.methods
+        await contracts.storeContr.methods
             .purchase(amount)
             .send({ from: currAcc })
             .catch((err) => {
