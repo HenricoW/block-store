@@ -10,6 +10,7 @@ const useFirestore = (collection) => {
     useEffect(() => {
         const unsub = fbFireStore.collection(collection).onSnapshot((snap) => {
             let documents = [];
+            console.log(snap);
             snap.forEach((doc) => {
                 documents.push({ ...doc.data(), id: doc.id });
             });

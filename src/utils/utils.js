@@ -30,7 +30,6 @@ const getWeb3 = async () => {
     } catch (err) {
         throw new Error(err);
     }
-    console.log(provider);
     const web3 = new Web3(provider);
 
     return [web3, provider];

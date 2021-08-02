@@ -75,10 +75,8 @@ function App() {
             })
             .then((snapshot) => {
                 snapshot.forEach((doc) => {
-                    console.log(doc.id);
                     fbProducts.push({ ...doc.data(), id: doc.id });
                 });
-                console.log(fbProducts);
                 dispatch(setProducts(fbProducts));
                 dispatch(setReviews(reviews));
                 dispatch(setExclusiveProduct(exclusiveProd));
