@@ -4,12 +4,12 @@ import "firebase/firestore";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBjy4c1Ydi7fEYy_Ra2dG4yKpXF3yblFLk",
+    apiKey: process.env.REACT_APP_FB_API_KEY,
     authDomain: "blockstore-1.firebaseapp.com",
     projectId: "blockstore-1",
     storageBucket: "blockstore-1.appspot.com",
-    messagingSenderId: "1087293310275",
-    appId: "1:1087293310275:web:9e877233289da67c265bf6",
+    messagingSenderId: process.env.REACT_APP_FB_MESSENGER_ID,
+    appId: process.env.REACT_APP_FB_APP_ID,
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

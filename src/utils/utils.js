@@ -14,7 +14,7 @@ const providerOptions = {
     walletconnect: {
         package: WalletConnectProvider,
         options: {
-            infuraId: "3cfcdcbe076749d281f6df6c84b7b86a",
+            infuraId: process.env.REACT_APP_INFURA_ID,
         },
     },
     torus: {
@@ -38,8 +38,8 @@ const getWeb3 = async () => {
 
 const getContracts = async (web3) => {
     const networkId = await web3.eth.net.getId();
-    const mUSDaddr = MockUSD.networks[networkId.toString()].address;
-    const w3ShopAddr = Web3Shop.networks[networkId.toString()].address;
+    const mUSDaddr = MockUSD.networks[networkId].address;
+    const w3ShopAddr = Web3Shop.networks[networkId].address;
 
     const mUSDcontr = new web3.eth.Contract(MockUSD.abi, mUSDaddr);
     const storeContr = new web3.eth.Contract(Web3Shop.abi, w3ShopAddr);
