@@ -16,8 +16,11 @@ import { Page404 } from "./pages/Page404";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { AdminPage } from "./pages/AdminPage";
 
+// database
+import { fbFireStore } from "./firebase/config";
+
 // redux
-import { productsTemp, reviews, exclusiveProd } from "./dataTemp";
+import { reviews, exclusiveProd } from "./dataTemp";
 
 import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/actions/productsActions";
@@ -61,9 +64,26 @@ function App() {
 
     // redux
     const dispatch = useDispatch();
-    dispatch(setProducts(productsTemp));
-    dispatch(setReviews(reviews));
-    dispatch(setExclusiveProduct(exclusiveProd));
+
+    useEffect(() => {
+        let fbProducts = [];
+        const dbRef = fbFireStore
+            .collection("products")
+            .get()
+            .catch((error) => {
+                console.log("Error fetching products", error);
+            })
+            .then((snapshot) => {
+                snapshot.forEach((doc) => {
+                    console.log(doc.id);
+                    fbProducts.push({ ...doc.data(), id: doc.id });
+                });
+                console.log(fbProducts);
+                dispatch(setProducts(fbProducts));
+                dispatch(setReviews(reviews));
+                dispatch(setExclusiveProduct(exclusiveProd));
+            });
+    }, []);
 
     // use for featured and latest, condition data from store before passing to this fn
     const renderProductList = (products, limitSmall, limitMedium, limit) => {
@@ -73,7 +93,7 @@ function App() {
                 id={prod.id}
                 title={prod.title}
                 price={prod.price}
-                image={prod.image}
+                image={prod.url}
                 hiddenSm={idx >= limitSmall && idx < limitMedium}
                 hiddenMd={idx >= limitMedium && idx < limit}
                 hidden={idx >= limit}

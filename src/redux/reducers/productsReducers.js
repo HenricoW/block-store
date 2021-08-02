@@ -28,7 +28,7 @@ const productsReducer = (state = initState, { type, payload }) => {
 
         // current product
         case currentProductActions.SELECT_PRODUCT:
-            const item = state.products.filter((item) => item.id === Number(payload));
+            const item = state.products.filter((item) => item.id === payload);
             return { ...state, currentItem: item[0] };
 
         case currentProductActions.DESELECT_PRODUCT:

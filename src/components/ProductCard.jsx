@@ -11,7 +11,7 @@ export const ProductCard = (props) => {
             }`}
         >
             <Link to={`/products/${id}`}>
-                <img src={`/images/${image}`} alt="featured product" />
+                <img src={`${image}`} alt="featured product" />
                 <div className="card-text">
                     <h4>{title}</h4>
                     <div className="rating"></div>
