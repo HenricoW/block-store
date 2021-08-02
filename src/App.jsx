@@ -25,7 +25,6 @@ import { setReviews } from "./redux/actions/reviewsActions";
 import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
 
 function App() {
-    // web3
     const [web3, setWeb3] = useState(undefined);
     const [provider, setProvider] = useState(undefined);
     const [contracts, setContracts] = useState({ storeContr: undefined, mUSDcontr: undefined });
@@ -50,14 +49,6 @@ function App() {
         const adminAddr = await storeContr.methods.admin().call();
         setAdmin(adminAddr);
     };
-
-    // useEffect(() => {
-    //     const init = async () => {
-    //         // await web3connect();
-    //     };
-
-    //     init();
-    // }, []);
 
     if (provider) provider.on("accountsChanged", (accs) => setAccounts(accs));
 
