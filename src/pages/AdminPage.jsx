@@ -58,7 +58,14 @@ export const AdminPage = ({ accounts, owner }) => {
         const desc = descRef.current.value;
         const price = parseFloat(priceRef.current.value);
 
-        const productData = { title, desc, price, url: adminState.imageUrl, featured: false, createdAt: timestamp() };
+        const productData = {
+            title,
+            desc,
+            price,
+            imageUrl: adminState.imageUrl,
+            featured: false,
+            createdAt: timestamp(),
+        };
         dbRef
             .add(productData)
             .catch((error) => {
@@ -107,7 +114,7 @@ export const AdminPage = ({ accounts, owner }) => {
                             name="title"
                             id="title"
                             ref={titleRef}
-                            pattern="[a-zA-Z0-9\-_]+"
+                            pattern="[a-zA-Z0-9\- ]+"
                             required="required"
                         />
                         <label htmlFor="description">Description</label>

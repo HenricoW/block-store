@@ -91,7 +91,7 @@ function App() {
                 id={prod.id}
                 title={prod.title}
                 price={prod.price}
-                image={prod.url}
+                imageUrl={prod.imageUrl}
                 hiddenSm={idx >= limitSmall && idx < limitMedium}
                 hiddenMd={idx >= limitMedium && idx < limit}
                 hidden={idx >= limit}
