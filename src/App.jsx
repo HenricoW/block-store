@@ -49,7 +49,7 @@ function App() {
         setContracts({ storeContr, mUSDcontr });
         const userAccounts = await _web3.eth.getAccounts();
         setAccounts(userAccounts);
-        const adminAddr = await storeContr.methods.admin().call();
+        const adminAddr = await storeContr.methods.owner().call();
         setAdmin(adminAddr);
     };
 
@@ -65,22 +65,18 @@ function App() {
     // redux
     const dispatch = useDispatch();
 
+    const productsEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/products";
+    const nftEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/nft";
+
     useEffect(() => {
-        let fbProducts = [];
-        const dbRef = fbFireStore
-            .collection("products")
-            .get()
-            .catch((error) => {
-                console.log("Error fetching products", error);
-            })
-            .then((snapshot) => {
-                snapshot.forEach((doc) => {
-                    fbProducts.push({ ...doc.data(), id: doc.id });
-                });
-                dispatch(setProducts(fbProducts));
+        fetch(productsEndpoint)
+            .then((resp) => resp.json())
+            .then((data) => {
+                dispatch(setProducts(data));
                 dispatch(setReviews(reviews));
                 dispatch(setExclusiveProduct(exclusiveProd));
-            });
+            })
+            .catch((err) => console.log(err));
     }, []);
 
     // use for featured and latest, condition data from store before passing to this fn
@@ -106,14 +102,23 @@ function App() {
         console.log(err.message);
     };
 
-    const onBuy = async (price) => {
+    // const selected_prod = useSelector((state) => state.allProducts.currentItem);
+
+    const onBuy = async (qty, product) => {
         if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
             web3connect();
             return;
         }
 
-        const amount = web3.utils.toWei(price.toString());
+        if (!product.id) {
+            const err = new Error("Selected item ID not set");
+            console.log(err);
+            return;
+        }
+
+        const amount = web3.utils.toWei((qty * product.price).toString());
         const currAcc = accounts[0];
+        // const product.itemID = selected_prod.id;
 
         try {
             await contracts.mUSDcontr.methods
@@ -128,9 +133,34 @@ function App() {
             return;
         }
 
+        const nftData = {
+            title: product.title,
+            desc: product.desc,
+            imageUrl: product.imageUrl,
+            itemID: product.id,
+        };
+
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // body: JSON.stringify({ ...nftData, tokenID }),
+        };
+
+        let tokenID;
         await contracts.storeContr.methods
-            .purchase(amount)
+            .purchase(amount, product.id)
             .send({ from: currAcc })
+            .then((receipt) => {
+                tokenID = receipt.events.nftMinted.returnValues.nftID;
+                return fetch(nftEndpoint, {
+                    ...fetchOptions,
+                    body: JSON.stringify({ ...nftData, tokenID }),
+                });
+            })
+            .then((resp) => resp.json())
+            .then(() => console.log("NFT data successfully written"))
             .catch((err) => {
                 handleMMError(err);
             });

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { BrandsList } from "../components/BrandsList";
 import { ButtonCTA } from "../components/ButtonCTA";
 import { TestimonialCard } from "../components/TestimonialCard";
@@ -21,6 +22,7 @@ export const HomePage = ({ onBuy, renderProductList }) => {
     const products = useSelector((state) => state.allProducts.products);
     const reviews = useSelector((state) => state.allReviews);
     const exclusiveProd = useSelector((state) => state.exclusiveProd);
+    const history = useHistory();
 
     return (
         <>
@@ -42,19 +44,19 @@ export const HomePage = ({ onBuy, renderProductList }) => {
                     <div className="grid-featured">{renderProductList(products, 2, 3, 4)}</div>
                 </div>
             </section>
-            <section className="exclusive-product">
+            {/* <section className="exclusive-product">
                 <div className="container">
                     <img src="/images/exclusive.png" alt="exclusive product" />
                     <div className="right-col">
                         <h3>Exclusively available on the Web3 Store</h3>
                         <h1>{exclusiveProd.title}</h1>
                         <p>{exclusiveProd.desription}</p>
-                        <ButtonCTA to={"/"} isHero={false} fn={() => onBuy(exclusiveProd.price)}>
+                        <ButtonCTA to={"/"} isHero={false} fn={() => history.push(`/${exclusiveProd.id}`)}>
                             Buy now
                         </ButtonCTA>
                     </div>
                 </div>
-            </section>
+            </section> */}
             <section className="latest-products">
                 <div className="container">
                     <h2>Latest Products</h2>

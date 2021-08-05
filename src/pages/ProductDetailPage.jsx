@@ -23,7 +23,7 @@ export const ProductDetailPage = ({ onBuy }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onBuy(qty.current.value * product.price);
+        onBuy(qty.current.value, product);
     };
 
     return product ? (
@@ -31,7 +31,7 @@ export const ProductDetailPage = ({ onBuy }) => {
             <div className="container">
                 <div className="detail-grid">
                     <div className="product-image">
-                        <img src={`${product.url}`} alt={product.title} />
+                        <img src={`${product.imageUrl}`} alt={product.title} />
                     </div>
                     <div className="product-text">
                         <h2>{product.title}</h2>
