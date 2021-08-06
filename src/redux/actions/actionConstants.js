@@ -8,6 +8,7 @@ const productActionTypes = {
 const currentProductActions = {
     SELECT_PRODUCT: "SELECT_PRODUCT",
     DESELECT_PRODUCT: "DESELECT_PRODUCT",
+    SELECT_FEATURED: "SELECT_FEATURED",
 };
 
 const reviewsActions = {
@@ -15,13 +16,8 @@ const reviewsActions = {
     ADD_REVIEW: "ADD_REVIEW",
 };
 
-const exclusiveProductActions = {
-    SET_EXCLUSIVE_PRODUCT: "SET_EXCLUSIVE_PRODUCT",
-    CLEAR_EXCLUSIVE_PRODUCT: "CLEAR_EXCLUSIVE_PRODUCT",
-};
-
 const adminPanelActions = {
     SET_IMAGE_URL: "SET_IMAGE_URL",
 };
 
-export { productActionTypes, currentProductActions, reviewsActions, exclusiveProductActions, adminPanelActions };
+export { productActionTypes, currentProductActions, reviewsActions, adminPanelActions };

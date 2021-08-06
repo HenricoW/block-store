@@ -5,7 +5,7 @@ const initState = {
     currentItem: {},
 };
 
-let nuProducts;
+let nuProducts, item;
 const productsReducer = (state = initState, { type, payload }) => {
     switch (type) {
         case productActionTypes.SET_PRODUCTS:
@@ -28,11 +28,16 @@ const productsReducer = (state = initState, { type, payload }) => {
 
         // current product
         case currentProductActions.SELECT_PRODUCT:
-            const item = state.products.filter((item) => item.id === payload);
+            item = state.products.filter((item) => item.id === payload);
             return { ...state, currentItem: item[0] };
 
         case currentProductActions.DESELECT_PRODUCT:
             return { ...state, currentItem: {} };
+
+        case currentProductActions.SELECT_FEATURED:
+            if (state.products.length === 0) return state;
+            item = state.products.filter((item) => item.featured);
+            return { ...state, currentItem: item[0] };
 
         default:
             return state;

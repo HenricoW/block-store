@@ -10,4 +10,9 @@ const deselectProduct = () => ({
     payload: null,
 });
 
-export { selectProduct, deselectProduct };
+const selectFeatured = () => ({
+    type: currentProductActions.SELECT_FEATURED,
+    payload: null,
+});
+
+export { selectProduct, deselectProduct, selectFeatured };
