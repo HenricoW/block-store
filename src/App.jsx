@@ -16,16 +16,12 @@ import { Page404 } from "./pages/Page404";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { AdminPage } from "./pages/AdminPage";
 
-// database
-import { fbFireStore } from "./firebase/config";
-
 // redux
-import { reviews, exclusiveProd } from "./dataTemp";
-
+import { reviews } from "./dataTemp"; // migrate to db in full
 import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/actions/productsActions";
 import { setReviews } from "./redux/actions/reviewsActions";
-import { setExclusiveProduct } from "./redux/actions/exclusiveProductActions";
+import { selectFeatured } from "./redux/actions/currentProductActions";
 
 function App() {
     const [web3, setWeb3] = useState(undefined);
@@ -74,7 +70,7 @@ function App() {
             .then((data) => {
                 dispatch(setProducts(data));
                 dispatch(setReviews(reviews));
-                dispatch(setExclusiveProduct(exclusiveProd));
+                dispatch(selectFeatured());
             })
             .catch((err) => console.log(err));
     }, []);
@@ -102,8 +98,6 @@ function App() {
         console.log(err.message);
     };
 
-    // const selected_prod = useSelector((state) => state.allProducts.currentItem);
-
     const onBuy = async (qty, product) => {
         if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
             web3connect();
@@ -118,7 +112,6 @@ function App() {
 
         const amount = web3.utils.toWei((qty * product.price).toString());
         const currAcc = accounts[0];
-        // const product.itemID = selected_prod.id;
 
         try {
             await contracts.mUSDcontr.methods
@@ -145,7 +138,6 @@ function App() {
             headers: {
                 "Content-Type": "application/json",
             },
-            // body: JSON.stringify({ ...nftData, tokenID }),
         };
 
         let tokenID;
@@ -171,7 +163,7 @@ function App() {
             <Navigation web3connect={web3connect} accounts={accounts} owner={admin} />
             <Switch>
                 <Route path="/" exact>
-                    <HomePage onBuy={onBuy} renderProductList={renderProductList} />
+                    <HomePage renderProductList={renderProductList} />
                 </Route>
                 <Route path="/products" exact>
                     <ProductsPage renderProductList={renderProductList} />

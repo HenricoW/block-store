@@ -7,19 +7,18 @@ export const ProductDetailPage = ({ onBuy }) => {
     const { product_id } = useParams();
 
     const products = useSelector((state) => state.allProducts.products);
-
     const dispatch = useDispatch();
-    dispatch(selectProduct(product_id));
-    const product = useSelector((state) => state.allProducts.currentItem);
-
     const history = useHistory();
     const qty = useRef(null);
 
     useEffect(() => {
         if (products.length < 1) history.push("/products");
         else qty.current.value = 1;
+        dispatch(selectProduct(product_id));
         window.scroll(0, 0);
-    }, []);
+    }, [products.length, product_id]);
+
+    const product = useSelector((state) => state.allProducts.currentItem);
 
     const handleSubmit = (e) => {
         e.preventDefault();

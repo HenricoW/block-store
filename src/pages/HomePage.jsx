@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrandsList } from "../components/BrandsList";
 import { ButtonCTA } from "../components/ButtonCTA";
 import { TestimonialCard } from "../components/TestimonialCard";
+import { selectFeatured } from "../redux/actions/currentProductActions";
 
 const renderTestimonials = (reviews) => {
     return reviews.map((review, idx) => (
@@ -17,12 +17,17 @@ const renderTestimonials = (reviews) => {
     ));
 };
 
-export const HomePage = ({ onBuy, renderProductList }) => {
+export const HomePage = ({ renderProductList }) => {
     // redux
+    const dispatch = useDispatch();
     const products = useSelector((state) => state.allProducts.products);
     const reviews = useSelector((state) => state.allReviews);
-    const exclusiveProd = useSelector((state) => state.exclusiveProd);
-    const history = useHistory();
+
+    useEffect(() => {
+        dispatch(selectFeatured());
+    }, []);
+
+    const exclusiveProd = useSelector((state) => state.allProducts.currentItem);
 
     return (
         <>
@@ -44,19 +49,21 @@ export const HomePage = ({ onBuy, renderProductList }) => {
                     <div className="grid-featured">{renderProductList(products, 2, 3, 4)}</div>
                 </div>
             </section>
-            {/* <section className="exclusive-product">
-                <div className="container">
-                    <img src="/images/exclusive.png" alt="exclusive product" />
-                    <div className="right-col">
-                        <h3>Exclusively available on the Web3 Store</h3>
-                        <h1>{exclusiveProd.title}</h1>
-                        <p>{exclusiveProd.desription}</p>
-                        <ButtonCTA to={"/"} isHero={false} fn={() => history.push(`/${exclusiveProd.id}`)}>
-                            Buy now
-                        </ButtonCTA>
+            {exclusiveProd ? (
+                <section className="exclusive-product">
+                    <div className="container">
+                        <img src="/images/exclusive.png" alt="exclusive product" />
+                        <div className="right-col">
+                            <h3>Exclusively available on the Web3 Store</h3>
+                            <h1>{exclusiveProd.title}</h1>
+                            <p>{exclusiveProd.desc}</p>
+                            <ButtonCTA to={`/products/${exclusiveProd.id}`} isHero={false} fn={() => {}}>
+                                Buy now
+                            </ButtonCTA>
+                        </div>
                     </div>
-                </div>
-            </section> */}
+                </section>
+            ) : null}
             <section className="latest-products">
                 <div className="container">
                     <h2>Latest Products</h2>
