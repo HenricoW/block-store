@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import "firebase/auth";
 import "firebase/storage";
 import "firebase/firestore";
 
@@ -13,6 +14,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().signInWithEmailAndPassword(process.env.REACT_APP_FB_FS_MAIL, process.env.REACT_APP_FB_FS_PWD);
 
 const fbStorage = firebase.storage();
 const fbFireStore = firebase.firestore();
