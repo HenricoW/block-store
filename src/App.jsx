@@ -63,6 +63,7 @@ function App() {
 
     const productsEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/products";
     const nftEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/nft";
+    // const nftEndpoint = "http://localhost:5000/store-w3-api/us-central1/api2/nft/";
 
     useEffect(() => {
         fetch(productsEndpoint)
@@ -172,7 +173,7 @@ function App() {
                     <ProductDetailPage onBuy={onBuy} />
                 </Route>
                 <Route path="/admin" exact>
-                    <AdminPage accounts={accounts} owner={admin} />
+                    <AdminPage accounts={accounts} owner={admin} web3={web3} />
                 </Route>
                 <Route component={Page404} />
             </Switch>

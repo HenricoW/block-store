@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 import { ProgressBar } from "../components/ProgressBar";
 import { fbFireStore, timestamp } from "../firebase/config";
 
-export const AdminPage = ({ accounts, owner }) => {
+export const AdminPage = ({ accounts, owner, web3 }) => {
     // component state
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
     const [submitted, setSubmitted] = useState(false);
-    const [currAcc, setCurrAcc] = useState(undefined);
 
     // DOM refs
     const titleRef = useRef(null);
@@ -19,15 +18,14 @@ export const AdminPage = ({ accounts, owner }) => {
     const history = useHistory();
 
     useEffect(() => {
-        const sessAcc = sessionStorage.getItem("connectedAcc");
-        const theAcc = accounts[0] || sessAcc;
-        setCurrAcc(theAcc);
-        if (!owner) history.push("/");
-        if (!theAcc || theAcc.toLowerCase() !== owner.toLowerCase()) history.push("/");
+        if (!accounts || !owner || accounts[0].toLowerCase() !== owner.toLowerCase()) {
+            history.push("/");
+            return;
+        }
     }, [accounts]);
 
     // redux
-    const adminState = useSelector((state) => state.adminPanel);
+    const adminState = useSelector((state) => state.adminPanel); // set in useStorage custom hook, as called in ProgressBar component
 
     // firestore
     const dbRef = fbFireStore.collection("products");
@@ -47,7 +45,7 @@ export const AdminPage = ({ accounts, owner }) => {
     };
 
     // handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!file) {
             setError("Please upload a file");
@@ -57,6 +55,15 @@ export const AdminPage = ({ accounts, owner }) => {
         const title = titleRef.current.value;
         const desc = descRef.current.value;
         const price = parseFloat(priceRef.current.value);
+
+        const message = "This is a public (announcement) message";
+        let signature;
+        try {
+            signature = await web3.eth.personal.sign(message, accounts[0]);
+            console.log(signature);
+        } catch (err) {
+            console.log(err);
+        }
 
         const productData = {
             title,
@@ -88,9 +95,10 @@ export const AdminPage = ({ accounts, owner }) => {
     return (
         <section className="admin-panel">
             <div className="container">
-                <h2 className="admin-panel-heading">Admin Panel - your address: {currAcc}</h2>
+                <h2 className="admin-panel-heading">Admin Panel - Add a Product</h2>
                 <div className="editing-card">
                     <div className="img-mngr">
+                        <h3>Product Image</h3>
                         <div className="img-box">
                             <img src={adminState.imageUrl ? adminState.imageUrl : imgUrl} alt="uploaded product" />
                         </div>
