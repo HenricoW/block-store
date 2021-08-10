@@ -110,7 +110,7 @@ function App() {
                     />
                 </Route>
                 <Route path="/admin" exact>
-                    <AdminPage accounts={accounts} owner={admin} web3={web3} />
+                    <AdminPage accounts={accounts} owner={admin} web3={web3} productsEndpoint={productsEndpoint} />
                 </Route>
                 <Route component={Page404} />
             </Switch>

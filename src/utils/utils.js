@@ -23,7 +23,7 @@ const providerOptions = {
 };
 
 const getWeb3 = async () => {
-    const web3Modal = new Web3Modal({ cacheProvider: false, providerOptions });
+    const web3Modal = new Web3Modal({ cacheProvider: true, providerOptions });
     let provider;
     try {
         provider = await web3Modal.connect();

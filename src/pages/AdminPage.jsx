@@ -2,9 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { ProgressBar } from "../components/ProgressBar";
-import { fbFireStore, timestamp } from "../firebase/config";
 
-export const AdminPage = ({ accounts, owner, web3 }) => {
+export const AdminPage = ({ accounts, owner, web3, productsEndpoint }) => {
     // component state
     const [error, setError] = useState(null);
     const [file, setFile] = useState(null);
@@ -27,14 +26,11 @@ export const AdminPage = ({ accounts, owner, web3 }) => {
     // redux
     const adminState = useSelector((state) => state.adminPanel); // set in useStorage custom hook, as called in ProgressBar component
 
-    // firestore
-    const dbRef = fbFireStore.collection("products");
-
     // handle image upload
     const allowedTypes = ["image/png", "image/jpeg"];
     const handleUpload = (e) => {
         const uploadedFile = e.target.files[0];
-        setSubmitted(false); // remove "Data capture success" message
+        setSubmitted(false); // removes "Data capture success" message
         if (uploadedFile && allowedTypes.includes(uploadedFile.type)) {
             setError(null);
             setFile(uploadedFile);
@@ -70,24 +66,22 @@ export const AdminPage = ({ accounts, owner, web3 }) => {
             desc,
             price,
             imageUrl: adminState.imageUrl,
-            featured: false,
-            createdAt: timestamp(),
+            message,
+            signedMssg: signature,
         };
-        dbRef
-            .add(productData)
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-                setError("Error adding document");
-                setSubmitted(false);
-            })
-            .then(async (docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                // clear fields
-                titleRef.current.value = "";
-                descRef.current.value = "";
-                priceRef.current.value = "";
-                setFile(null);
-            });
+
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productData),
+        };
+
+        fetch(productsEndpoint, fetchOptions)
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err));
     };
 
     let imgUrl = "images/placeholder.svg";
