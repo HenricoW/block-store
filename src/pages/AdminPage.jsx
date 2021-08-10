@@ -21,7 +21,7 @@ export const AdminPage = ({ accounts, owner, web3, productsEndpoint }) => {
             history.push("/");
             return;
         }
-    }, [accounts]);
+    }, [accounts, history, owner]);
 
     // redux
     const adminState = useSelector((state) => state.adminPanel); // set in useStorage custom hook, as called in ProgressBar component

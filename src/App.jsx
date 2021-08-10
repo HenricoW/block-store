@@ -73,7 +73,7 @@ function App() {
             .then((resp) => resp.json())
             .then((data) => dispatch(setReviews(data)))
             .catch((err) => console.log(err));
-    }, []);
+    }, [dispatch]);
 
     // use for featured and latest, condition data from store before passing to this fn
     const renderProductList = (products, limitSmall, limitMedium, limit) => {

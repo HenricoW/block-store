@@ -18,7 +18,7 @@ export const ProductDetailPage = ({ web3, contracts, accounts, web3connect }) =>
         else qty.current.value = 1;
         dispatch(selectProduct(product_id));
         window.scroll(0, 0);
-    }, [products.length, product_id]);
+    }, [products.length, product_id, dispatch, history]);
 
     const product = useSelector((state) => state.allProducts.currentItem);
 

@@ -25,7 +25,7 @@ export const HomePage = ({ renderProductList }) => {
 
     useEffect(() => {
         dispatch(selectFeatured());
-    }, []);
+    }, [dispatch]);
 
     const exclusiveProd = useSelector((state) => state.allProducts.currentItem);
 
