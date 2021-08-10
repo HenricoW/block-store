@@ -3,7 +3,9 @@ import { useHistory, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProduct } from "../redux/actions/currentProductActions";
 
-export const ProductDetailPage = ({ onBuy }) => {
+const nftEndpoint = process.env.REACT_APP_FB_API_URL + "/nft";
+
+export const ProductDetailPage = ({ web3, contracts, accounts, web3connect }) => {
     const { product_id } = useParams();
 
     const products = useSelector((state) => state.allProducts.products);
@@ -19,6 +21,74 @@ export const ProductDetailPage = ({ onBuy }) => {
     }, [products.length, product_id]);
 
     const product = useSelector((state) => state.allProducts.currentItem);
+
+    const handleMMError = (err) => {
+        if (err.message.includes("User denied transaction")) {
+            alert("You rejected the transaction"); // change to modal
+        }
+        console.log(err.message);
+    };
+
+    // depends on: web3, contracts, accounts, nftEndpoint, handleMMError
+    const onBuy = async (qty, product) => {
+        if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
+            web3connect();
+            return;
+        }
+
+        if (!product.id) {
+            const err = new Error("Selected item ID not set");
+            console.log(err);
+            return;
+        }
+
+        const amount = web3.utils.toWei((qty * product.price).toString());
+        const currAcc = accounts[0];
+
+        // set the approval
+        try {
+            await contracts.mUSDcontr.methods
+                .approve(contracts.storeContr.options.address, amount)
+                .send({ from: currAcc });
+        } catch (err) {
+            console.log(new Error("Approval failed"));
+            handleMMError(err);
+            return;
+        }
+
+        const nftData = {
+            title: product.title,
+            desc: product.desc,
+            imageUrl: product.imageUrl,
+            itemID: product.id,
+        };
+
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        // cunduct the purchase
+        let tokenID;
+        contracts.storeContr.methods
+            .purchase(amount, product.id)
+            .send({ from: currAcc })
+            .then((receipt) => {
+                tokenID = receipt.events.nftMinted.returnValues.nftID;
+                return fetch(nftEndpoint, {
+                    ...fetchOptions,
+                    body: JSON.stringify({ ...nftData, tokenID }),
+                });
+            })
+            .then((resp) => resp.json())
+            .then(() => console.log("NFT data successfully written"))
+            .catch((err) => {
+                console.log(new Error("Transaction failed"));
+                handleMMError(err);
+            });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();

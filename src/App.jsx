@@ -17,11 +17,14 @@ import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { AdminPage } from "./pages/AdminPage";
 
 // redux
-import { reviews } from "./dataTemp"; // migrate to db in full
 import { useDispatch } from "react-redux";
 import { setProducts } from "./redux/actions/productsActions";
 import { setReviews } from "./redux/actions/reviewsActions";
 import { selectFeatured } from "./redux/actions/currentProductActions";
+
+// API endpoints
+const productsEndpoint = process.env.REACT_APP_FB_API_URL + "/products";
+const reviewEndpoint = process.env.REACT_APP_FB_API_URL + "/reviews";
 
 function App() {
     const [web3, setWeb3] = useState(undefined);
@@ -30,6 +33,10 @@ function App() {
     const [accounts, setAccounts] = useState(undefined);
     const [admin, setAdmin] = useState("");
 
+    // redux
+    const dispatch = useDispatch();
+
+    // connect to wallet, get & set web3, provider and contract instances in state (from getWeb3 import)
     const web3connect = async () => {
         let _web3, _provider;
         try {
@@ -49,30 +56,22 @@ function App() {
         setAdmin(adminAddr);
     };
 
+    // change state (rerender) on account change
     if (provider) provider.on("accountsChanged", (accs) => setAccounts(accs));
 
-    useEffect(() => {
-        if (accounts) {
-            console.log("Saving current account in Session.");
-            sessionStorage.setItem("connectedAcc", accounts[0]);
-        }
-    }, [accounts]);
-
-    // redux
-    const dispatch = useDispatch();
-
-    const productsEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/products";
-    const nftEndpoint = "https://us-central1-store-w3-api.cloudfunctions.net/api2/nft";
-    // const nftEndpoint = "http://localhost:5000/store-w3-api/us-central1/api2/nft/";
-
+    // get products and review data from API
     useEffect(() => {
         fetch(productsEndpoint)
             .then((resp) => resp.json())
             .then((data) => {
                 dispatch(setProducts(data));
-                dispatch(setReviews(reviews));
                 dispatch(selectFeatured());
             })
+            .catch((err) => console.log(err));
+
+        fetch(reviewEndpoint)
+            .then((resp) => resp.json())
+            .then((data) => dispatch(setReviews(data)))
             .catch((err) => console.log(err));
     }, []);
 
@@ -92,73 +91,6 @@ function App() {
         ));
     };
 
-    const handleMMError = (err) => {
-        if (err.message.includes("User denied transaction")) {
-            alert("You rejected the transaction"); // change to modal
-        }
-        console.log(err.message);
-    };
-
-    const onBuy = async (qty, product) => {
-        if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
-            web3connect();
-            return;
-        }
-
-        if (!product.id) {
-            const err = new Error("Selected item ID not set");
-            console.log(err);
-            return;
-        }
-
-        const amount = web3.utils.toWei((qty * product.price).toString());
-        const currAcc = accounts[0];
-
-        try {
-            await contracts.mUSDcontr.methods
-                .approve(contracts.storeContr.options.address, amount)
-                .send({ from: currAcc })
-                .catch((err) => {
-                    handleMMError(err);
-                    throw new Error("Approval failed");
-                });
-        } catch (err) {
-            console.log(err);
-            return;
-        }
-
-        const nftData = {
-            title: product.title,
-            desc: product.desc,
-            imageUrl: product.imageUrl,
-            itemID: product.id,
-        };
-
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-
-        let tokenID;
-        await contracts.storeContr.methods
-            .purchase(amount, product.id)
-            .send({ from: currAcc })
-            .then((receipt) => {
-                tokenID = receipt.events.nftMinted.returnValues.nftID;
-                return fetch(nftEndpoint, {
-                    ...fetchOptions,
-                    body: JSON.stringify({ ...nftData, tokenID }),
-                });
-            })
-            .then((resp) => resp.json())
-            .then(() => console.log("NFT data successfully written"))
-            .catch((err) => {
-                handleMMError(err);
-            });
-    };
-
     return (
         <BrowserRouter>
             <Navigation web3connect={web3connect} accounts={accounts} owner={admin} />
@@ -170,7 +102,12 @@ function App() {
                     <ProductsPage renderProductList={renderProductList} />
                 </Route>
                 <Route path="/products/:product_id" exact>
-                    <ProductDetailPage onBuy={onBuy} />
+                    <ProductDetailPage
+                        web3={web3}
+                        contracts={contracts}
+                        accounts={accounts}
+                        web3connect={web3connect}
+                    />
                 </Route>
                 <Route path="/admin" exact>
                     <AdminPage accounts={accounts} owner={admin} web3={web3} />
