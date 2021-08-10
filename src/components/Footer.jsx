@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
     return (
@@ -7,7 +8,7 @@ export const Footer = () => {
                 <div className="grid-footer">
                     <div className="brand-signature">
                         {/* <img src="/images/logo-white.png" alt="store logo" /> */}
-                        <h1>
+                        <h1 onClick={() => window.scroll(0, 0)}>
                             <span>Web3</span> Store
                         </h1>
                         <p>
@@ -20,35 +21,35 @@ export const Footer = () => {
                         <div className="useful-links">
                             <h4>Useful Links</h4>
                             <ul>
-                                <li>
-                                    <a href="/">Coupons</a>
+                                <li onClick={() => window.scroll(0, 0)}>
+                                    <Link to="/">Coupons</Link>
                                 </li>
-                                <li>
-                                    <a href="/">Blog posts</a>
+                                <li onClick={() => window.scroll(0, 0)}>
+                                    <Link to="/">Blog posts</Link>
                                 </li>
-                                <li>
-                                    <a href="/">Returns</a>
+                                <li onClick={() => window.scroll(0, 0)}>
+                                    <Link to="/">Returns</Link>
                                 </li>
-                                <li>
-                                    <a href="/">Join our Affiliates</a>
+                                <li onClick={() => window.scroll(0, 0)}>
+                                    <Link to="/">Join our Affiliates</Link>
                                 </li>
                             </ul>
                         </div>
                         <div className="socials">
                             <h4>Social Media</h4>
                             <div className="social-icons">
-                                <a href="/" className="social-link">
+                                <Link to="/" className="social-link" onClick={() => window.scroll(0, 0)}>
                                     <img src="/images/facebook.svg" alt="Facebook link" />
-                                </a>
-                                <a href="/" className="social-link">
+                                </Link>
+                                <Link to="/" className="social-link" onClick={() => window.scroll(0, 0)}>
                                     <img src="/images/twitter.svg" alt="Twitter link" />
-                                </a>
-                                <a href="/" className="social-link">
+                                </Link>
+                                <Link to="/" className="social-link" onClick={() => window.scroll(0, 0)}>
                                     <img src="/images/instagram.svg" alt="Instagram link" />
-                                </a>
-                                <a href="/" className="social-link">
+                                </Link>
+                                <Link to="/" className="social-link" onClick={() => window.scroll(0, 0)}>
                                     <img src="/images/youtube.svg" alt="YouTube link" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

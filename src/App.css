@@ -668,6 +668,7 @@ footer .container .grid-footer .brand-signature h1 {
   padding: 0.2em 0.8em;
   border: #007af3 solid 4px;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 footer .container .grid-footer .brand-signature h1 span {
