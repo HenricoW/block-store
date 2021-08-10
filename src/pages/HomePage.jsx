@@ -10,7 +10,7 @@ const renderTestimonials = (reviews) => {
         <TestimonialCard
             key={review.id}
             text={review.text}
-            image={review.image}
+            image={review.imageUrl}
             name={review.name}
             hiddenSm={idx >= 2}
         />

@@ -9,7 +9,7 @@ export const TestimonialCard = (props) => {
             <p>{text}</p>
             <div className="rating"></div>
             <div className="reviewer">
-                <img src={`/images/${image}`} alt="reviewer's avatar" className="avatar" />
+                <img src={image} alt="reviewer's avatar" className="avatar" />
                 <div className="name">{name}</div>
             </div>
         </div>
