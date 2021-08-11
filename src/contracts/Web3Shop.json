@@ -17977,6 +17977,76 @@
     "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        },
+        "0x1f99c63235dc68ccdea086b13dceb9b432242dcd37c5141a1af354c9b753c924": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "customer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "nftID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "itemID",
+              "type": "string"
+            }
+          ],
+          "name": "nftMinted",
+          "type": "event"
+        },
+        "0xa019eaadc256ed6e045d4794a292dc8303bb65c30f55e714993fd8790313d11f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "customer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "paymentMade",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x596B0Bc8f7A8b05130546bCc82B0378D2261315d",
+      "transactionHash": "0x06bfbd93a2ab111f2f658addc9a0b294f6f378e50e5cf7d7e385e4431d444d90"
+    },
     "5777": {
       "events": {
         "0xa019eaadc256ed6e045d4794a292dc8303bb65c30f55e714993fd8790313d11f": {
@@ -18049,7 +18119,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-08-08T20:21:46.831Z",
+  "updatedAt": "2021-08-11T18:28:17.318Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
