@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fbStorage, fbFireStore, timestamp } from "../firebase/config";
+import { fbStorage } from "../firebase/config";
 import { useDispatch } from "react-redux";
 import { setImageUrl } from "../redux/actions/adminPanelActions";
 
@@ -14,7 +14,6 @@ const useStorage = (file, collectionStr) => {
     useEffect(() => {
         // references
         const storageRef = fbStorage.ref(file.name);
-        const databaseRef = fbFireStore.collection(collectionStr);
         setUrl(null);
         setProgress(0);
 
@@ -30,7 +29,6 @@ const useStorage = (file, collectionStr) => {
             },
             async () => {
                 const url = await storageRef.getDownloadURL();
-                await databaseRef.add({ url, createdAt: timestamp() });
                 if (collectionStr === "images") dispatch(setImageUrl(url));
                 setUrl(url);
             }
