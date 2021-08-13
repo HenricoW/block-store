@@ -139,6 +139,18 @@ img {
   background: #444;
 }
 
+.navigation .container nav ul li .network-bad {
+  margin: 0;
+  font-weight: bold;
+  color: orangered;
+}
+
+.navigation .container nav ul li .network-good {
+  margin: 0;
+  font-weight: bold;
+  color: green;
+}
+
 .navigation .container nav .nav-rh-icons {
   display: -webkit-box;
   display: -ms-flexbox;

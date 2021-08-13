@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-export const Navigation = ({ web3connect, accounts, owner }) => {
-    useEffect(() => {}, [accounts]);
+export const Navigation = ({ web3connect, accounts, owner, networks, networkId }) => {
+    useEffect(() => {}, [accounts, networkId, owner]);
 
     const walletConnect = (e) => {
         e.preventDefault();
@@ -47,6 +47,17 @@ export const Navigation = ({ web3connect, accounts, owner }) => {
                         onClick={() => hideMobileMenu()}
                     />
                     <ul onClick={() => hideMobileMenu()}>
+                        <li>
+                            {accounts && networks ? (
+                                networks.hasOwnProperty(networkId) ? (
+                                    <div className="network network-good">{networks[networkId]}</div>
+                                ) : (
+                                    <div className="network network-bad">{"Unsupported Network"}</div>
+                                )
+                            ) : (
+                                ""
+                            )}
+                        </li>
                         <li>
                             <Link to="/products">Products</Link>
                         </li>

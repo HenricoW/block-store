@@ -26,10 +26,17 @@ import { selectFeatured } from "./redux/actions/currentProductActions";
 const productsEndpoint = process.env.REACT_APP_FB_API_URL + "/products";
 const reviewEndpoint = process.env.REACT_APP_FB_API_URL + "/reviews";
 
+// supported network id's:
+const networks = {
+    5777: "Ganache",
+    4: "Rinkeby",
+};
+
 function App() {
     const [web3, setWeb3] = useState(undefined);
     const [provider, setProvider] = useState(undefined);
-    const [contracts, setContracts] = useState({ storeContr: undefined, mUSDcontr: undefined });
+    const [networkId, setNetworkId] = useState(0);
+    const [contracts, setContracts] = useState({ storeContr: undefined, USDcontr: undefined });
     const [accounts, setAccounts] = useState(undefined);
     const [admin, setAdmin] = useState("");
 
@@ -47,17 +54,38 @@ function App() {
             console.log(err.message);
             if (err.message === "Modal closed by user") return;
         }
+        const netId = await _web3.eth.net.getId();
+        setNetworkId(netId);
 
-        const [mUSDcontr, storeContr] = await getContracts(_web3);
-        setContracts({ storeContr, mUSDcontr });
-        const userAccounts = await _web3.eth.getAccounts();
-        setAccounts(userAccounts);
-        const adminAddr = await storeContr.methods.owner().call();
-        setAdmin(adminAddr);
+        if (networks.hasOwnProperty(netId)) {
+            const [USDcontr, storeContr] = await getContracts(_web3);
+            setContracts({ storeContr, USDcontr });
+            const userAccounts = await _web3.eth.getAccounts();
+            setAccounts(userAccounts);
+
+            const adminAddr = await storeContr.methods.owner().call();
+            setAdmin(adminAddr);
+        }
     };
 
     // change state (rerender) on account change
     if (provider) provider.on("accountsChanged", (accs) => setAccounts(accs));
+
+    // change state (rerender) on network change
+    if (provider)
+        provider.on("chainChanged", async (chainId) => {
+            const netId = await web3.eth.net.getId(); // not always the same as Chain ID
+            setNetworkId(netId);
+            if (web3 && networks.hasOwnProperty(netId)) {
+                // eslint-disable-next-line
+                const [_, storeContr] = await getContracts(web3); // prior comment: ignore warning about unused '_'
+                const adminAddr = await storeContr.methods.owner().call();
+                setAdmin(adminAddr);
+            } else {
+                setAdmin("");
+            }
+            // window.location.reload();
+        });
 
     // get products and review data from API
     useEffect(() => {
@@ -93,7 +121,13 @@ function App() {
 
     return (
         <BrowserRouter>
-            <Navigation web3connect={web3connect} accounts={accounts} owner={admin} />
+            <Navigation
+                web3connect={web3connect}
+                accounts={accounts}
+                owner={admin}
+                networks={networks}
+                networkId={networkId}
+            />
             <Switch>
                 <Route path="/" exact>
                     <HomePage renderProductList={renderProductList} />

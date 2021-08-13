@@ -145,6 +145,18 @@ img {
                             background: $anchors;
                         }
                     }
+
+                    .network-bad {
+                        margin: 0;
+                        font-weight: bold;
+                        color: orangered;
+                    }
+
+                    .network-good {
+                        margin: 0;
+                        font-weight: bold;
+                        color: green;
+                    }
                 }
             }
 
