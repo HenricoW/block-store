@@ -42,7 +42,7 @@ contract Web3Shop is ReentrancyGuard, Ownable {
             emit nftMinted(msg.sender, nftID, itemID);
 
             // send reward token
-            if(address(shopToken) != address(0)) shopToken.reward(msg.sender, (amount / rewardRatio));
+            if(address(shopToken) != address(0)) shopToken.reward(msg.sender, (1000 gwei * amount / rewardRatio)); // account for 6 decimal stables
 
             return nftID;
         } else {
@@ -52,7 +52,7 @@ contract Web3Shop is ReentrancyGuard, Ownable {
 
     function refund(address recipient, uint amount, bool mustBurn) external onlyOwner() nonReentrant() {    // add reentrancy guard
         require(accruedSpend[recipient] >= amount, "Web3Shop#refund: Refund request > cumulative spend");
-        if( (address(shopToken) != address(0)) && mustBurn ) shopToken.burn(recipient, amount / rewardRatio);
+        if( (address(shopToken) != address(0)) && mustBurn ) shopToken.burn(recipient, 1000 gwei * amount / rewardRatio);
 
         // verify product return
 

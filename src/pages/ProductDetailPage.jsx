@@ -31,7 +31,7 @@ export const ProductDetailPage = ({ web3, contracts, accounts, web3connect }) =>
 
     // depends on: web3, contracts, accounts, nftEndpoint, handleMMError
     const onBuy = async (qty, product) => {
-        if (web3 === undefined || contracts.mUSDcontr === undefined || contracts.storeContr === undefined) {
+        if (web3 === undefined || contracts.USDcontr === undefined || contracts.storeContr === undefined) {
             web3connect();
             return;
         }
@@ -42,12 +42,13 @@ export const ProductDetailPage = ({ web3, contracts, accounts, web3connect }) =>
             return;
         }
 
-        const amount = web3.utils.toWei((qty * product.price).toString());
+        const amount = web3.utils.toWei((qty * product.price).toString(), "mwei");
+        console.log(amount.toString());
         const currAcc = accounts[0];
 
         // set the approval
         try {
-            await contracts.mUSDcontr.methods
+            await contracts.USDcontr.methods
                 .approve(contracts.storeContr.options.address, amount)
                 .send({ from: currAcc });
         } catch (err) {

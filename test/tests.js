@@ -159,7 +159,7 @@ contract("Shop tests", async (accounts) => {
         let nftBalBefore = await nftContr.balanceOf(user1);
 
         const purchValN = 200;
-        const purchaseVal = web3.utils.toWei(purchValN.toString());
+        const purchaseVal = web3.utils.toWei(purchValN.toString(), "mwei");
         const item_id = "IB5YUS1m7B5JCALlNtAN";
 
         let rewardRatio = await w3shop.rewardRatio();
@@ -171,7 +171,7 @@ contract("Shop tests", async (accounts) => {
 
         // get shop balance in payment token, user balance in reward token
         let balAfter = await musd.balanceOf(w3shop.address);
-        balAfter = web3.utils.fromWei(balAfter);
+        balAfter = web3.utils.fromWei(balAfter, "mwei");
         let balSToken = await stoken.balanceOf(user1);
         balSToken = web3.utils.fromWei(balSToken);
         let nftBalAfter = await nftContr.balanceOf(user1);
@@ -193,7 +193,7 @@ contract("Shop tests", async (accounts) => {
         bal1 = web3.utils.fromWei(bal1);
 
         const purchValN = 200;
-        const purchaseVal = web3.utils.toWei(purchValN.toString());
+        const purchaseVal = web3.utils.toWei(purchValN.toString(), "mwei");
         const item_id = "IB5YUS1m7B5JCALlNtAN";
 
         let rewardRatio = await w3shop.rewardRatio();
@@ -205,7 +205,7 @@ contract("Shop tests", async (accounts) => {
 
         // get shop balance in payment token, user balance in reward token
         let bal2 = await musd.balanceOf(w3shop.address);
-        bal2 = web3.utils.fromWei(bal2);
+        bal2 = web3.utils.fromWei(bal2, "mwei");
         let balS1 = await stoken.balanceOf(user1);
         balS1 = web3.utils.fromWei(balS1);
 
@@ -213,7 +213,7 @@ contract("Shop tests", async (accounts) => {
         await w3shop.refund(user1, purchaseVal, false, { from: admin });
 
         let bal3 = await musd.balanceOf(w3shop.address);
-        bal3 = web3.utils.fromWei(bal3);
+        bal3 = web3.utils.fromWei(bal3, "mwei");
         let balS2 = await stoken.balanceOf(user1);
         balS2 = web3.utils.fromWei(balS2);
 
@@ -231,11 +231,11 @@ contract("Shop tests", async (accounts) => {
         bal1 = web3.utils.fromWei(bal1);
 
         const purchValN = 200;
-        const purchaseVal = web3.utils.toWei(purchValN.toString());
+        const purchaseVal = web3.utils.toWei(purchValN.toString(), "mwei");
         const item_id = "IB5YUS1m7B5JCALlNtAN";
 
         const refundValN = purchValN / 2;
-        const refundVal = web3.utils.toWei(refundValN.toString());
+        const refundVal = web3.utils.toWei(refundValN.toString(), "mwei");
 
         let rewardRatio = await w3shop.rewardRatio();
         rewardRatio = parseInt(rewardRatio);
@@ -246,7 +246,7 @@ contract("Shop tests", async (accounts) => {
 
         // get shop balance in payment token, user balance in reward token
         let bal2 = await musd.balanceOf(w3shop.address);
-        bal2 = web3.utils.fromWei(bal2);
+        bal2 = web3.utils.fromWei(bal2, "mwei");
         let balS1 = await stoken.balanceOf(user1);
         balS1 = web3.utils.fromWei(balS1);
 
@@ -254,7 +254,7 @@ contract("Shop tests", async (accounts) => {
         await w3shop.refund(user1, refundVal, true, { from: admin });
 
         let bal3 = await musd.balanceOf(w3shop.address);
-        bal3 = web3.utils.fromWei(bal3);
+        bal3 = web3.utils.fromWei(bal3, "mwei");
         let balS2 = await stoken.balanceOf(user1);
         balS2 = web3.utils.fromWei(balS2);
 
