@@ -18,13 +18,10 @@
  *
  */
 require("dotenv").config();
-
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-const infuraKey = process.env.REACT_APP_INFURA_ID;
-console.log(process.env.REACT_APP_INFURA_ID);
 
+const infuraKey = process.env.REACT_APP_INFURA_ID;
 const pKey = process.env.PKEY;
-console.log(process.env.PKEY);
 
 module.exports = {
     /**
