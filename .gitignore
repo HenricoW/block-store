@@ -23,6 +23,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# images used for development only
 public/images/users
 public/images/unused
 public/images/products
+
+# non critical contract artifacts
+Address.json
+Context.json
+ERC20.json
+IERC20Metadata.json
+Migrations.json
+ReentrancyGuard.json
+SafeMath.json

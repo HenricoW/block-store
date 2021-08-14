@@ -52,7 +52,7 @@ export const HomePage = ({ renderProductList }) => {
             {exclusiveProd ? (
                 <section className="exclusive-product">
                     <div className="container">
-                        <img src="/images/exclusive.png" alt="exclusive product" />
+                        <img src={exclusiveProd.imageUrl} alt="exclusive product" />
                         <div className="right-col">
                             <h3>Exclusively available on the Web3 Store</h3>
                             <h1>{exclusiveProd.title}</h1>
