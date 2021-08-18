@@ -31,7 +31,7 @@ contract Web3Shop is ReentrancyGuard, Ownable {
         shopToken = ShopToken(shopTknAddress);
     }
 
-    function purchase(uint amount, string memory itemID) external nonReentrant() returns(uint tokenId) {         // add reentrancy guard
+    function purchase(uint amount, string memory itemID) external nonReentrant() returns(uint tokenId) {
         bool success = paymentToken.transferFrom(msg.sender, address(this), amount);
         if(success){
             emit paymentMade(msg.sender, amount);
