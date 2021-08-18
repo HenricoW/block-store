@@ -6,7 +6,7 @@ name: Truffle tests
 on:
   push:
     branches: [ main ]
-    paths: contracts/**
+#     paths: contracts/**
   pull_request:
     branches: [ main ]
     paths: contracts/**
@@ -30,4 +30,16 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm i -g truffle
+    - run: truffle develop
     - run: truffle test test/tests.js --network=development
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
