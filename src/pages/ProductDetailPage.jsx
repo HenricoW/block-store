@@ -105,6 +105,22 @@ export const ProductDetailPage = ({ web3, contracts, accounts, web3connect }) =>
             <img src={`${product.imageUrl}`} alt={product.title} />
           </div>
           <div className="product-text">
+            <div className="instructions">
+              <p>
+                <b>If you are on Rinkeby:</b>
+              </p>
+              <p>
+                Go{" "}
+                <a href="https://app.compound.finance/" target="blank">
+                  Compound Finance
+                </a>{" "}
+                and mint testnet USDC.
+              </p>
+              <p>
+                Go to the USD Coin supply line - Go to the 'WITHDRAW' part of the pop-up - At the bottom, find the
+                'FAUCET' link - Click it to mint 100 USDC - come back and enjoy the site.
+              </p>
+            </div>
             <h2>{product.title}</h2>
             <h3>$ {product.price}</h3>
             <p>{product.desc}</p>

@@ -493,6 +493,21 @@ img {
   max-width: 450px;
 }
 
+.product-detail .container .detail-grid .product-text .instructions {
+  border: solid gray 1px;
+  background-color: #333;
+  padding: 2em;
+}
+
+.product-detail .container .detail-grid .product-text .instructions p {
+  margin: 0;
+}
+
+.product-detail .container .detail-grid .product-text .instructions a {
+  text-decoration: none;
+  color: #007af3;
+}
+
 .product-detail .container .detail-grid .product-text h2 {
   position: relative;
   padding: 0.3em 0;
